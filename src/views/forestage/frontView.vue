@@ -1,6 +1,16 @@
 <template>
-  <div class="home">
-    <p>前台</p>
+  <div>
+    <FrontNavbar></FrontNavbar>
     <router-view></router-view>
   </div>
 </template>
+
+<script>
+import FrontNavbar from '../../components/FrontNavbar.vue';
+
+export default {
+  components: {
+    FrontNavbar,
+  },
+};
+</script>

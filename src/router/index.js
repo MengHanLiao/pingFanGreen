@@ -65,11 +65,21 @@ const routes = [
     path: '/login',
     component: () => import('../views/LoginView.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFound.vue'),
+  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  linkActiveClass: 'active',
+  scrollBehavior() {
+    return {
+      top: 0,
+    };
+  },
 });
 
 export default router;
