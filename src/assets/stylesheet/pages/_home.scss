@@ -1,0 +1,16 @@
+.hero{
+  height: 600px;
+  background-size: cover;
+  &.eventA{
+    background-image: url('../src/assets/images/sunPlants.jpg');
+    background-position: 50% 80%;
+  }
+  &.eventB{
+    background-image: url('../src/assets/images/twoSmallSucclents.jpg');
+    background-position: 50% 50%;
+  }
+  &.eventC{
+    background-image: url('../src/assets/images/succlentsLarge.jpg');
+    background-position: 50% top;
+  }
+}
