@@ -56,26 +56,28 @@
           </div>
         </swiper-slide>
         <template v-slot:container-end>
-          <div class="swipper-hint border border-2 d-flex flex-column align-items-center px-3 py-2">
-            <p class="text-white mb-0">scroll</p>
+          <div class="swipper-hint d-flex flex-column align-items-center px-3 py-2">
+            <p class="text-black fw-bold mb-0">scroll</p>
             <img class="bounce" src="../../assets/images/icons/swipe_down_black.svg" alt=""/>
           </div>
         </template>
       </swiper>
     </section>
-    {{containerHeight}}
     <section id="aboutUs">
       <div class="container pt-8">
         <div class="row">
           <div class="col-lg-6 col-xl-5 offset-xl-1 text-center text-lg-start">
-            <h2 class="text-primary mb-6">關於平方綠</h2>
+            <h2 class="text-primary mb-5 mb-md-6">關於平方綠</h2>
             <h3 class="fs-4 mb-5">大家好，我們是平方綠</h3>
-            <p>因為養了仙人掌而開始被小多肉們迷得神魂顛倒，<br>
+            <p>因為養了仙人掌而開始被小多肉們迷得神魂顛倒，
             平方綠希望能讓每個人都成為多肉好盆友。</p>
-            <p>我們不只提供健康的多肉盆栽、客製化禮物，<br>
+            <p>我們不只提供健康的多肉盆栽、客製化禮物，
             也推出一系列的養育心得文章，歡迎大家聯絡交流。</p>
-            <div class="mb-2 mb-lg-12">
-              <button class="btn btn-green-100 me-3" type="button">聯絡我們</button>
+            <div class="mt-5 mb-2 mb-lg-12">
+              <router-link to="/customization" custom v-slot="{ navigate }">
+                <button @click="navigate" role="link"
+                  class="btn btn-green-100" type="button">聯絡我們</button>
+              </router-link>
               <a href="#" class="p-3"><img src="../../assets/images/icons/facebook.png"
                 style="width: 2rem" alt="fb"></a>
               <a href="#" class="p-3"><img src="../../assets/images/icons/instagram.png"
@@ -90,7 +92,7 @@
     </section>
     <section id="productCategory">
       <div class="bg-green-50">
-        <div class="container pt-8">
+        <div class="container pt-8 pb-9 pb-md-12">
           <h2 class="text-center mb-6">系列商品</h2>
           <div class="row gy-4">
             <div class="col-md-4">
@@ -118,6 +120,138 @@
               </router-link>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section id="customization">
+      <div class="container pt-8 pb-12">
+        <div class="row align-items-center">
+          <div class="col-4 offset-md-1">
+            <img src="../../assets/images/customRing.jpg" alt="custom"
+              class="object-fit-cover" style="height: 500px">
+          </div>
+          <div class="col-8 col-md-4 offset-md-1">
+            <h2 class="text-primary mb-5 mb-md-6">客製化禮品</h2>
+            <h3 class="fs-4 mb-5">多肉組盆、禮品訂製</h3>
+            <p>覺得多肉們聚集在一起會更美嗎？<br>
+              平方綠提供全客製化商品：多肉組盆與多肉花圈，
+              根據您的需求，製作出理想中的禮品。</p>
+            <p class="mb-5">由於客製化商品需要與您討論，準備時間會拉長，
+              心動不如馬上行動！</p>
+            <router-link to="/customization" custom v-slot="{ navigate }">
+              <button @click="navigate" role="link"
+                class="btn btn-green-100" type="button">查看更多資訊</button>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="recommand">
+      <div class="bg-green-50">
+        <div class="container pt-8 pb-12 border-bottom border-2">
+          <h2 class="text-primary text-center mb-5 mb-md-6">好評推薦</h2>
+          <ul class="row">
+            <li class="col-3">
+              <div class="card h-100">
+                <img src="../../assets/images/custom1.jpg" alt="randomCustom1"
+                  class="card-img-top object-fit-cover" style="height: 250px">
+                <div class="card-body flex-column justify-content-between">
+                  <div>
+                    <h5 class="card-title">Hilda Daniels</h5>
+                    <div class="mb-3">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                    </div>
+                    <p>很棒的購物體驗，多肉們看起來很健康。</p>
+                  </div>
+                  <span class="d-block text-muted text-end">2022/1/3</span>
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="card h-100">
+                <img src="../../assets/images/custom2.jpg" alt="randomCustom1"
+                  class="card-img-top object-fit-cover" style="height: 250px">
+                <div class="card-body flex-column justify-content-between">
+                  <div>
+                    <h5 class="card-title">Glasses Great</h5>
+                    <div class="mb-3">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                    </div>
+                    <p>包裝完善，商品出貨快速。</p>
+                  </div>
+                  <span class="d-block text-muted text-end">2021/12/23</span>
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="card h-100">
+                <img src="../../assets/images/custom3.jpg" alt="randomCustom1"
+                  class="card-img-top object-fit-cover" style="height: 250px">
+                <div class="card-body flex-column justify-content-between">
+                  <div>
+                    <h5 class="card-title">Roberta Foster</h5>
+                    <div class="mb-3">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                    </div>
+                    <p>客製化成品令人滿意，一段時間的等待是值得的。</p>
+                  </div>
+                  <span class="d-block text-muted text-end">2022/3/18</span>
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="card h-100">
+                <img src="../../assets/images/custom4.jpg" alt="randomCustom1"
+                  class="card-img-top object-fit-cover" style="height: 250px">
+                <div class="card-body flex-column justify-content-between">
+                  <div>
+                    <h5 class="card-title">Kitty Taoyuan</h5>
+                    <div class="mb-3">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                      <img src="../../assets/images/icons/star_black.svg"
+                        style="width: 24px" alt="rate">
+                    </div>
+                    <p>服務態度親切，部落格內有許多種植技巧！！</p>
+                  </div>
+                  <span class="d-block text-muted text-end">2022/1/17</span>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

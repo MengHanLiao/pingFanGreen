@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid bg-green-50 py-4">
-    <div class="d-flex flex-column flex-md-row justify-content-between">
+  <div class="bg-green-50">
+    <div class="container d-flex flex-column flex-md-row justify-content-between py-4">
       <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
         <router-link to="/" class="d-flex align-items-center mb-2">
           <img
