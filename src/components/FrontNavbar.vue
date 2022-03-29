@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow">
+  <div class="container-fluid sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
       <h1>
         <router-link to="/" class="logo d-flex align-items-center">
           <img class="me-1" src="../assets/images/icons/logo.png"
@@ -91,14 +91,14 @@
         <router-link to="/favorite" custom v-slot="{ navigate }">
           <button @click="navigate" role="link" class="btn">
             <span
-              ><img src="../assets/images/icons/favorite_border_black.svg" alt=""
+              ><img src="../assets/images/icons/favorite_border_black.svg" alt="myFavorite"
             /></span>
           </button>
         </router-link>
         <router-link to="/cart" custom v-slot="{ navigate }">
           <button @click="navigate" role="link" class="btn">
             <span
-              ><img src="../assets/images/icons/shopping_cart_black.svg" alt=""
+              ><img src="../assets/images/icons/shopping_cart_black.svg" alt="cart"
             /></span>
           </button>
         </router-link>
