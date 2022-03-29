@@ -1,14 +1,15 @@
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "./helpers/variables";
+@import "./helpers/base";
 
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
-
-@import "./helpers/base";
-@import "./mixin";
-
 @import '../../../node_modules/swiper/modules/navigation/navigation.scss';
 @import '../../../node_modules/swiper/modules/pagination/pagination.scss';
+
 @import "./vender/myswiper";
+@import "./mixin";
+
+@import "./components/overlay";
 
 @import "./pages/home";
 
