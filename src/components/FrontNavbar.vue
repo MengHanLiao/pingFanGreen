@@ -102,7 +102,6 @@
             /></span>
           </button>
         </router-link>
-
       <button
         class="navbar-toggler"
         type="button"
