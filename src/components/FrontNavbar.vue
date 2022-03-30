@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid sticky-top">
+  <div class="container-fluid bg-white sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light shadow">
       <h1>
         <router-link to="/" class="logo d-flex align-items-center">

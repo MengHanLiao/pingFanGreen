@@ -95,28 +95,12 @@
         <div class="container pt-8 pb-9 pb-md-12">
           <h2 class="text-center mb-6">系列商品</h2>
           <div class="row gy-4">
-            <div class="col-md-4">
+            <div class="col-md-4" v-for="category in categories" :key="category.seriesName">
               <router-link class="overlay" to="/product">
                 <img class="overlay-img object-fit-cover"
-                  src="../../assets/images/succulents_brownPots.jpg"
+                  :src="require(`../../assets/images/${category.imgName}.jpg`)"
                   style="height: 300px" alt="series1">
-                <p class="overlay-text text-white fs-4">仙人掌</p>
-              </router-link>
-            </div>
-            <div class="col-md-4">
-              <router-link class="overlay" to="/product">
-                <img class="overlay-img object-fit-cover"
-                  src="../../assets/images/bearSucculents.jpg"
-                  style="height: 300px" alt="series1">
-                <p class="overlay-text text-white fs-4">熊童子</p>
-              </router-link>
-            </div>
-            <div class="col-md-4">
-              <router-link class="overlay" to="/product">
-                <img class="overlay-img object-fit-cover"
-                  src="../../assets/images/flowerSucclents.jpg"
-                  style="height: 300px" alt="series1">
-                <p class="overlay-text text-white fs-4">花形多肉</p>
+                <p class="overlay-text text-white fs-4">{{ category.seriesName }}</p>
               </router-link>
             </div>
           </div>
@@ -150,104 +134,36 @@
       <div class="bg-green-50">
         <div class="container pt-8 pb-12 border-bottom border-2">
           <h2 class="text-primary text-center mb-5 mb-md-6">好評推薦</h2>
-          <ul class="row">
-            <li class="col-3">
+          <ul class="row row-cols-1 row-cols-lg-4 gy-4">
+            <li class="col" v-for="(recommand) in customRecommands" :key="recommand.name">
               <div class="card h-100">
-                <img src="../../assets/images/custom1.jpg" alt="randomCustom1"
-                  class="card-img-top object-fit-cover" style="height: 250px">
-                <div class="card-body flex-column justify-content-between">
-                  <div>
-                    <h5 class="card-title">Hilda Daniels</h5>
-                    <div class="mb-3">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                    </div>
-                    <p>很棒的購物體驗，多肉們看起來很健康。</p>
+                <div class="row row-cols-2 row-cols-lg-1">
+                  <div class="col">
+                    <img :src="require(`../../assets/images/${recommand.pictureName}.jpg`)"
+                      alt="randomCustom"
+                      class="card-img-top object-fit-cover" style="height: 200px">
                   </div>
-                  <span class="d-block text-muted text-end">2022/1/3</span>
-                </div>
-              </div>
-            </li>
-            <li class="col-3">
-              <div class="card h-100">
-                <img src="../../assets/images/custom2.jpg" alt="randomCustom1"
-                  class="card-img-top object-fit-cover" style="height: 250px">
-                <div class="card-body flex-column justify-content-between">
-                  <div>
-                    <h5 class="card-title">Glasses Great</h5>
-                    <div class="mb-3">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
+                  <div class="col">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div>
+                        <h5 class="card-title">{{ recommand.name }}</h5>
+                        <div class="mb-3">
+                          <img src="../../assets/images/icons/star_black.svg"
+                            style="width: 24px" alt="rate">
+                          <img src="../../assets/images/icons/star_black.svg"
+                            style="width: 24px" alt="rate">
+                          <img src="../../assets/images/icons/star_black.svg"
+                            style="width: 24px" alt="rate">
+                          <img src="../../assets/images/icons/star_black.svg"
+                            style="width: 24px" alt="rate">
+                          <img src="../../assets/images/icons/star_black.svg"
+                            style="width: 24px" alt="rate">
+                        </div>
+                        <p>{{ recommand.comment }}</p>
+                      </div>
+                      <span class="d-block text-muted text-end">{{ recommand.date }}</span>
                     </div>
-                    <p>包裝完善，商品出貨快速。</p>
                   </div>
-                  <span class="d-block text-muted text-end">2021/12/23</span>
-                </div>
-              </div>
-            </li>
-            <li class="col-3">
-              <div class="card h-100">
-                <img src="../../assets/images/custom3.jpg" alt="randomCustom1"
-                  class="card-img-top object-fit-cover" style="height: 250px">
-                <div class="card-body flex-column justify-content-between">
-                  <div>
-                    <h5 class="card-title">Roberta Foster</h5>
-                    <div class="mb-3">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                    </div>
-                    <p>客製化成品令人滿意，一段時間的等待是值得的。</p>
-                  </div>
-                  <span class="d-block text-muted text-end">2022/3/18</span>
-                </div>
-              </div>
-            </li>
-            <li class="col-3">
-              <div class="card h-100">
-                <img src="../../assets/images/custom4.jpg" alt="randomCustom1"
-                  class="card-img-top object-fit-cover" style="height: 250px">
-                <div class="card-body flex-column justify-content-between">
-                  <div>
-                    <h5 class="card-title">Kitty Taoyuan</h5>
-                    <div class="mb-3">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                      <img src="../../assets/images/icons/star_black.svg"
-                        style="width: 24px" alt="rate">
-                    </div>
-                    <p>服務態度親切，部落格內有許多種植技巧！！</p>
-                  </div>
-                  <span class="d-block text-muted text-end">2022/1/17</span>
                 </div>
               </div>
             </li>
@@ -268,6 +184,49 @@ export default {
   data() {
     return {
       modules: [Navigation, Pagination, Autoplay],
+      categories: [
+        {
+          seriesName: '仙人掌',
+          path: '/product',
+          imgName: 'succulents_brownPots',
+        },
+        {
+          seriesName: '熊童子',
+          path: '/product',
+          imgName: 'bearSucculents',
+        },
+        {
+          seriesName: '花形多肉',
+          path: '/product',
+          imgName: 'flowerSucclents',
+        },
+      ],
+      customRecommands: [
+        {
+          name: 'Vue Kata',
+          pictureName: 'custom1',
+          comment: '很棒的購物體驗，多肉們看起來很健康。',
+          date: '2022/1/3',
+        },
+        {
+          name: 'Glasses Great',
+          pictureName: 'custom2',
+          comment: '包裝完善，商品出貨快速，不錯的店家。',
+          date: '2021/12/23',
+        },
+        {
+          name: 'Turnip Cake',
+          pictureName: 'custom3',
+          comment: '客製化成品令人滿意，一段時間的等待是值得的。',
+          date: '2022/3/18',
+        },
+        {
+          name: 'Kitty Taoyuan',
+          pictureName: 'custom4',
+          comment: '服務態度親切，部落格內有許多種植技巧！！',
+          date: '2022/1/17',
+        },
+      ],
     };
   },
   components: {
