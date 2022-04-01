@@ -233,5 +233,9 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  mounted() {
+    const loader = this.$loading.show();
+    setTimeout(() => { loader.hide(); }, 1000);
+  },
 };
 </script>

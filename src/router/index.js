@@ -10,7 +10,17 @@ const routes = [
         component: () => import('../views/forestage/HomeView.vue'),
       },
       {
-        path: 'product',
+        path: 'product/:category?',
+        component: () => import('../views/forestage/ProductView.vue'),
+        meta: {
+          breadcrumb: [{
+            name: '全部商品',
+            link: '/product',
+          }],
+        },
+      },
+      {
+        path: 'product/:id',
         component: () => import('../views/forestage/ProductView.vue'),
       },
       {
