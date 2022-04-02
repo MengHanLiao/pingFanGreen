@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <div class="row row-cols-2 row-cols-lg-4 gy-4">
+        <div class="row row-cols-2 row-cols-lg-4 gy-4 mb-7">
           <div class="col" v-for="product in products" :key="product.id">
             <div class="card" :class="{'card-hover': isHover}"
               @mouseover="isHover = true" @focus="isHover = true">
@@ -57,6 +57,10 @@
             </div>
           </div>
         </div>
+        <PaginationComponent
+          :pagination="pagination"
+          @change-page="getData"
+        ></PaginationComponent>
       </div>
     </div>
   </div>
@@ -65,6 +69,7 @@
 <script>
 import Breadcrumb from '../../components/BreadcrumbComponent.vue';
 import ProductSidenav from '../../components/ProductSidenav.vue';
+import PaginationComponent from '../../components/PaginationComponent.vue';
 
 export default {
   data() {
@@ -79,12 +84,13 @@ export default {
   components: {
     Breadcrumb,
     ProductSidenav,
+    PaginationComponent,
   },
   methods: {
-    getData(category = '') {
+    getData(page = 1, category = '') {
       const loader = this.$loading.show();
       this.$http.get(
-        `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/products?category=${category}`,
+        `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/products?page=${page}&category=${category}`,
       ).then((res) => {
         this.products = res.data.products;
         this.pagination = res.data.pagination;
