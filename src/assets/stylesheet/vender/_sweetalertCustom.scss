@@ -1,0 +1,21 @@
+@import '~sweetalert2/src/variables';
+
+$swal2-outline-color: rgba($green-500, .5);
+
+$swal2-title-font-size: $h4-font-size;
+// ICONS
+$swal2-success: $green-500;
+$swal2-success-border: rgba($swal2-success, .6);
+$swal2-error: $danger;
+// COMMON VARIABLES FOR ALL ACTION BUTTONS
+$swal2-button-padding: $input-btn-padding-y $input-btn-padding-x;
+// CONFIRM BUTTON
+$swal2-confirm-button-background-color: #3DB25A;
+$swal2-confirm-button-border-radius: none;
+// CANCEL BUTTON
+$swal2-cancel-button-background-color: $white;
+$swal2-cancel-button-color: $primary;
+// CLOSE BUTTON
+$swal2-close-button-focus-box-shadow: none;
+
+@import '~sweetalert2/src/sweetalert2';

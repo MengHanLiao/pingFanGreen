@@ -36,7 +36,7 @@
         <div class="offcanvas-body justify-content-center">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/product"
+              <router-link class="nav-link" to="/products"
                 @click="hideOffcanvas">
                 產品專區</router-link>
             </li>
@@ -59,27 +59,27 @@
           <div class="d-lg-none border-top pt-2">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/product"
+                <router-link class="nav-link ps-0" to="/products"
                   @click="hideOffcanvas">
                   仙人掌系列</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/article"
+                <router-link class="nav-link ps-0" to="/products"
                   @click="hideOffcanvas">
                   熊童子系列</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/customization"
+                <router-link class="nav-link ps-0" to="/products"
                   @click="hideOffcanvas">
                   花形多肉</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/question"
+                <router-link class="nav-link ps-0" to="/products"
                   @click="hideOffcanvas">
                   石頭玉家族</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/question"
+                <router-link class="nav-link ps-0" to="/products"
                   @click="hideOffcanvas">
                   動物好盆栽</router-link>
               </li>

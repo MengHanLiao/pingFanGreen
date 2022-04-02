@@ -10,18 +10,21 @@ const routes = [
         component: () => import('../views/forestage/HomeView.vue'),
       },
       {
-        path: 'product/:category?',
+        path: 'products/:category?',
         component: () => import('../views/forestage/ProductView.vue'),
         meta: {
           breadcrumb: [{
             name: '全部商品',
-            link: '/product',
+            link: '/products',
           }],
         },
       },
       {
         path: 'product/:id',
-        component: () => import('../views/forestage/ProductView.vue'),
+        component: () => import('../views/forestage/ProductInfo.vue'),
+        props: (route) => ({
+          id: route.params.id,
+        }),
       },
       {
         path: 'article',

@@ -100,7 +100,7 @@
                 <img class="overlay-img object-fit-cover"
                   :src="require(`../../assets/images/${category.imgName}.jpg`)"
                   style="height: 300px" alt="series1">
-                <p class="overlay-text text-white fs-4">{{ category.seriesName }}</p>
+                <p class="overlay-content text-white fs-4">{{ category.seriesName }}</p>
               </router-link>
             </div>
           </div>
@@ -134,7 +134,7 @@
       <div class="bg-green-50">
         <div class="container pt-8 pb-12 border-bottom border-2">
           <h2 class="text-primary text-center mb-5 mb-md-6">好評推薦</h2>
-          <ul class="row row-cols-1 row-cols-lg-4 gy-4">
+          <ul class="row row-cols-1 row-cols-lg-4 gy-4 list-style-none">
             <li class="col" v-for="(recommand) in customRecommands" :key="recommand.name">
               <div class="card h-100">
                 <div class="row row-cols-2 row-cols-lg-1">

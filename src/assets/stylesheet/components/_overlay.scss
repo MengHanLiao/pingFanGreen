@@ -12,7 +12,7 @@
     background: $black;
     transition: opacity .3s ease;
   }
-  &-text{
+  &-content{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -25,7 +25,7 @@
   &:hover::after{
     opacity: 0.5;
   }
-  &:hover &-text{
+  &:hover &-content{
     opacity: 1;
   }
 }

@@ -4,11 +4,7 @@
     <div class="row">
       <div class="col-md-3 d-none d-md-block">
         <h5>商品分類</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item" v-for="(category,index) in categories" :key="index+'dasdf'">
-            <router-link :to="`/product/${category}`" class="nav-link">{{ category }}</router-link>
-          </li>
-        </ul>
+        <ProductSidenav></ProductSidenav>
       </div>
       <div class="col-md-9">
         <div class="row">
@@ -27,12 +23,17 @@
         </div>
         <div class="row row-cols-2 row-cols-lg-4 gy-4">
           <div class="col" v-for="product in products" :key="product.id">
-            <div class="card" :class="{'card-hover': cardHover}"
-              @mouseover="cardHover = true" @focus="cardHover = true">
-              <img :src="product.imageUrl" :alt="product.title"
-                class="card-img-top object-fit-cover" style="height: 150px">
+            <div class="card" :class="{'card-hover': isHover}"
+              @mouseover="isHover = true" @focus="isHover = true">
+              <router-link class="overlay" :to="`/product/${product.id}`">
+                <img class="overlay-img object-fit-cover"
+                  :src="product.imageUrl"
+                  style="height: 200px" alt="series1">
+                <button class="overlay-content btn btn-outline-light"
+                  type="button">更多資訊</button>
+              </router-link>
               <div class="card-body">
-                <h5>{{ product.title }}</h5>
+                <h5 class="text-truncate">{{ product.title }}</h5>
                 <p class="text-primary fs-5 mb-0">
                   <del class="d-block text-muted fs-sm"
                     v-show="product.origin_price !== product.price">
@@ -44,8 +45,12 @@
                     <img src="../../assets/images/icons/favorite_border_black.svg"
                       alt="myFavorite"/>
                   </button>
-                  <button class="btn" type="button" @click="addToCart(product.id)">
-                    <img src="../../assets/images/icons/shopping_cart_black.svg" alt="cart"/>
+                  <button class="btn" :class="{ disabled: product.id === loadItem}"
+                    type="button" @click="addToCart(product.id)">
+                    <div class="spinner-grow" role="status"
+                      :class="{'d-none': product.id !== loadItem}"></div>
+                    <img :class="{'d-none':  product.id === loadItem}"
+                      src="../../assets/images/icons/shopping_cart_black.svg" alt="cart"/>
                   </button>
                 </div>
               </div>
@@ -59,18 +64,21 @@
 
 <script>
 import Breadcrumb from '../../components/BreadcrumbComponent.vue';
+import ProductSidenav from '../../components/ProductSidenav.vue';
 
 export default {
   data() {
     return {
-      cardHover: false,
+      isHover: false,
       categories: [],
       products: [],
       pagination: [],
+      loadItem: '',
     };
   },
   components: {
     Breadcrumb,
+    ProductSidenav,
   },
   methods: {
     getData(category = '') {
@@ -95,15 +103,26 @@ export default {
       });
     },
     addToCart(id, qty = 1) {
+      this.loadItem = id;
       this.$http.post(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`, {
         data: {
           product_id: id,
           qty,
         },
       }).then((res) => {
-        console.log(res);
+        this.loadItem = '';
+        this.$swal({
+          icon: 'success',
+          title: res.data.message,
+          showCloseButton: true,
+        });
       }).catch((err) => {
-        console.log(err);
+        this.loadItem = '';
+        this.$swal({
+          icon: 'errpr',
+          title: err.response.data.message,
+          showCloseButton: true,
+        });
       });
     },
   },
