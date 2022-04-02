@@ -65,11 +65,11 @@
                   <button class="btn" type="button"
                     @click="toggleFavorite(product.id)">
                     <img v-if="favorite.includes(product.id)"
-                      src="../../assets/images/icons/favorite_border_black.svg"
+                      src="../../assets/images/icons/favorite_black.svg"
                       alt="myFavorite"
                     />
                     <img v-else
-                      src="../../assets/images/icons/favorite_black.svg"
+                      src="../../assets/images/icons/favorite_border_black.svg"
                       alt="myFavorite"
                     />
                   </button>
@@ -174,8 +174,18 @@ export default {
       const favoriteIndex = this.favorite.findIndex((item) => item === id);
       if (favoriteIndex === -1) {
         this.favorite.push(id);
+        this.$swal({
+          icon: 'success',
+          title: '加入收藏',
+          showCloseButton: true,
+        });
       } else {
         this.favorite.splice(favoriteIndex, 1);
+        this.$swal({
+          icon: 'success',
+          title: '取消收藏',
+          showCloseButton: true,
+        });
       }
     },
   },
