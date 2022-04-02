@@ -11,7 +11,7 @@
           />
           <span class="fs-2 d-flex flex-column logo-font">平方綠</span>
         </router-link>
-        <router-link to="/lognin" custom v-slot="{ navigate }">
+        <router-link to="/login" custom v-slot="{ navigate }">
           <button @click="navigate" role="link" class="btn btn-outline-dark border-2">登入後台</button>
         </router-link>
       </div>
