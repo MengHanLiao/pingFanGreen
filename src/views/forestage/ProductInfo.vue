@@ -187,7 +187,7 @@ export default {
         .catch((err) => {
           this.loadItem = '';
           this.$swal({
-            icon: 'errpr',
+            icon: 'error',
             title: err.response.data.message,
             showCloseButton: true,
           });

@@ -40,11 +40,11 @@
                 @click="hideOffcanvas">
                 產品專區</router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" to="/article"
                 @click="hideOffcanvas">
                 所有文章</router-link>
-            </li>
+            </li> -->
             <li class="nav-item">
               <router-link class="nav-link" to="/customization"
                 @click="hideOffcanvas">
@@ -79,9 +79,9 @@
                   石頭玉家族</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/products/盆栽"
+                <router-link class="nav-link ps-0" to="/products/盆栽器具"
                   @click="hideOffcanvas">
-                  動物好盆栽</router-link>
+                  盆栽器具</router-link>
               </li>
             </ul>
           </div>
