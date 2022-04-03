@@ -50,7 +50,7 @@
                       type="text"
                       class="form-control"
                       id="productUnit"
-                      placeholder="碗、份"
+                      placeholder="盆"
                     />
                   </div>
                   <div class="col-6 mb-3">
@@ -74,16 +74,52 @@
                     />
                   </div>
                   <div class="mb-3">
+                    <label for="productSize" class="form-label"
+                      >尺寸</label
+                    >
+                    <input
+                      v-model.trim="tempProduct.size"
+                      type="text"
+                      class="form-control"
+                      id="productSize"
+                      placeholder="10*10*10 (公分)"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="productGift" class="form-label"
+                      >贈品</label
+                    >
+                    <input
+                      v-model.trim="tempProduct.gift"
+                      type="text"
+                      class="form-control"
+                      id="productGift"
+                      placeholder="贈品"
+                    />
+                  </div>
+                  <div class="mb-3">
                     <label for="productName" class="form-label"
-                      >內容與成分</label
+                      >內容物</label
                     >
                     <input
                       v-model.trim="tempProduct.content"
                       type="text"
                       class="form-control"
                       id="productPrice"
-                      placeholder="內容與成分"
+                      placeholder="植株含贈品"
                     />
+                  </div>
+                  <div class="mb-3">
+                    <label for="productIntro" class="form-label"
+                      >商品簡述</label
+                    >
+                    <textarea
+                      v-model.trim="tempProduct.intro"
+                      class="form-control"
+                      id="productIntro"
+                      rows="3"
+                      placeholder="簡單介紹"
+                    ></textarea>
                   </div>
                   <div class="mb-3">
                     <label for="productDescription" class="form-label"
@@ -94,7 +130,7 @@
                       class="form-control"
                       id="productDescription"
                       rows="3"
-                      placeholder="說點什麼..."
+                      placeholder="詳細描述"
                     ></textarea>
                   </div>
                   <div class="form-check mb-3">

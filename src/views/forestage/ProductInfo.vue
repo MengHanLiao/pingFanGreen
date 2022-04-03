@@ -7,23 +7,21 @@
         <ProductSidenav></ProductSidenav>
       </div>
       <div class="col-md-9">
-        <div class="row row-cols-2 mb-5">
-          <div class="col">
-            <img src="" alt="main" />
-            <div>
-              <img src="" alt="other" />
-            </div>
+        <div class="row row-cols-1 row-cols-md-2 mb-5">
+          <div class="col mb-3">
+            <img :src="product.imageUrl" alt="main" />
           </div>
           <div class="col">
-            <h3 class="fs-4 mb-4">title 綠爪</h3>
-            <p>intro 爪系多肉植物，原始為綠色，一定日曬後，葉尖會變色。</p>
-            <p>gift 買多肉一律附贈多肉照護卡喔！</p>
-            <p class="mb-5">size 尺寸： 14 x 15 x 17 (公分)</p>
+            <h3 class="fs-4 mb-4">{{ product.title }}</h3>
+            <p>{{ product.intro }}</p>
+            <p>{{ product.gift }}</p>
+            <p class="mb-5">尺寸： {{ product.size }}</p>
             <p class="fs-4 text-primary text-end">
-              <del class="fs-sm text-gray me-2">NT$ 280</del>NT$ 250
+              <del class="fs-sm text-gray me-2">NT$ {{ product.origin_price }}</del>
+              NT$ {{ product.price }}
             </p>
             <label class="d-flex mb-3">
-              <select class="form-select" name="productnum">
+              <select class="form-select" name="productnum" v-model="qty">
                 <option value="請選擇數量" selected="selected">
                   請選擇數量
                 </option>
@@ -32,7 +30,7 @@
                 </option>
               </select>
             </label>
-            <button class="btn btn-green-500 text-white w-100 mb-3">
+            <button class="btn btn-green-500 text-white w-100 mb-3" @click="addToCart(product.id)">
               <img
                 src="../../assets/images/icons/shopping_cart_black.svg"
                 class="me-2"
@@ -40,13 +38,19 @@
                 alt="cart"
               />加入購物車
             </button>
-            <button class="btn btn-outline-dark w-100 mb-3">
-              <img
-                src="../../assets/images/icons/favorite_border_black.svg"
-                class="me-2"
-                style="width: 1.25rem"
-                alt="favorite_border_black"
-              />我的最愛
+            <button class="btn btn-outline-dark w-100 mb-3" @click="toggleFavorite(product.id)">
+              <template v-if="favorite.includes(product.id)">
+                <img class="object-fit-cover me-2" style="width: 1.25rem"
+                  src="../../assets/images/icons/favorite_black.svg"
+                  alt="favorite_fill"
+                />已加入收藏
+              </template>
+              <template v-else>
+                <img class="object-fit-cover me-2" style="width: 1.25rem"
+                  src="../../assets/images/icons/favorite_border_black.svg"
+                  alt="favorite_border"
+                />我的最愛
+              </template>
             </button>
           </div>
         </div>
@@ -83,13 +87,9 @@
             id="nav-home"
             role="tabpanel"
             aria-labelledby="nav-home-tab">
-            <p class="mb-5">title 名稱：綠爪</p>
-            <p class="mb-5">content 內容：綠爪一株，多肉照護卡</p>
-            <p class="mb-5">
-              descriptipn
-              商品描述：爪系多肉植物，葉片原始淺綠色，帶紅色小葉尖，有充足陽光的時候紅色葉尖會變成紅黑色
-              ，喜歡陽光充足和涼爽乾燥的生長環境，容易照顧，適合新手。
-            </p>
+            <p class="mb-5">名稱： {{ product.title }}</p>
+            <p class="mb-5">內容：{{ product.content }}</p>
+            <p class="mb-5"><span class="d-block">商品描述： </span>{{ product.description }}</p>
           </div>
           <div class="tab-pane fade"
             id="nav-profile"
@@ -143,6 +143,8 @@ export default {
   data() {
     return {
       product: {},
+      favorite: JSON.parse(localStorage.getItem('favorite')) || [],
+      qty: 1,
     };
   },
   props: ['id'],
@@ -161,6 +163,61 @@ export default {
         .catch((err) => {
           console.dir(err);
         });
+    },
+    addToCart(id) {
+      this.loadItem = id;
+      this.$http
+        .post(
+          `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`,
+          {
+            data: {
+              product_id: id,
+              qty: this.qty,
+            },
+          },
+        )
+        .then((res) => {
+          this.loadItem = '';
+          this.$swal({
+            icon: 'success',
+            title: res.data.message,
+            showCloseButton: true,
+          });
+        })
+        .catch((err) => {
+          this.loadItem = '';
+          this.$swal({
+            icon: 'errpr',
+            title: err.response.data.message,
+            showCloseButton: true,
+          });
+        });
+    },
+    toggleFavorite(id) {
+      const favoriteIndex = this.favorite.findIndex((item) => item === id);
+      if (favoriteIndex === -1) {
+        this.favorite.push(id);
+        this.$swal({
+          icon: 'success',
+          title: '加入收藏',
+          showCloseButton: true,
+        });
+      } else {
+        this.favorite.splice(favoriteIndex, 1);
+        this.$swal({
+          icon: 'success',
+          title: '取消收藏',
+          showCloseButton: true,
+        });
+      }
+    },
+  },
+  watch: {
+    favorite: {
+      handler() {
+        localStorage.setItem('favorite', JSON.stringify(this.favorite));
+      },
+      deep: true,
     },
   },
   mounted() {

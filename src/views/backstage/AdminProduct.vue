@@ -142,21 +142,13 @@ export default {
       }
       this.$http[method](url, { data: obj })
         .then((res) => {
-          this.$httpMessageState({
-            style: 'success',
-            title: '產品更新',
-            content: res.data.message,
-          });
+          console.log(res);
           this.getProducts();
           const controlPrdouctModal = this.$refs.productModal;
           controlPrdouctModal.closeModal();
         })
         .catch((err) => {
-          this.$httpMessageState({
-            style: 'danger',
-            title: '產品更新',
-            content: err.response.data.message,
-          });
+          console.dir(err);
         });
     },
     openDeleteModal(product) {
