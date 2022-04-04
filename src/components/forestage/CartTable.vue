@@ -122,7 +122,6 @@ export default {
       },
     },
   },
-  // props: ['can-change'],
   methods: {
     getCart() {
       this.$http

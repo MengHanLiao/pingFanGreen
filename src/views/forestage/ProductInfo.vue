@@ -137,7 +137,7 @@
 </template>
 
 <script>
-import ProductSidenav from '../../components/ProductSidenav.vue';
+import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
 
 export default {
   data() {

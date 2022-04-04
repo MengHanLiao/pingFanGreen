@@ -34,7 +34,9 @@
             @submit="submitOrder"
           >
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">
+                Email<span class="text-sm text-primary ms-2">必填</span>
+              </label>
               <v-field
                 id="email"
                 name="email"
@@ -51,7 +53,9 @@
               ></error-message>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">收件人姓名</label>
+              <label for="name" class="form-label">
+                收件人姓名<span class="text-sm text-primary ms-2">必填</span>
+              </label>
               <v-field
                 id="name"
                 name="姓名"
@@ -68,7 +72,9 @@
               ></error-message>
             </div>
             <div class="mb-3">
-              <label for="tel" class="form-label">收件人電話</label>
+              <label for="tel" class="form-label">
+                收件人電話<span class="text-sm text-primary ms-2">必填</span>
+              </label>
               <v-field
                 id="tel"
                 name="電話"
@@ -85,7 +91,9 @@
               ></error-message>
             </div>
             <div class="mb-3">
-              <label for="address" class="form-label">收件人地址</label>
+              <label for="address" class="form-label">
+                收件人地址<span class="text-sm text-primary ms-2">必填</span>
+              </label>
               <v-field
                 id="address"
                 name="地址"
@@ -100,6 +108,16 @@
                 name="地址"
                 class="invalid-feedback"
               ></error-message>
+            </div>
+            <div class="mb-4">
+              <label for="payMethod" class="form-label">
+                付款方式<span class="text-sm text-primary ms-2">必填</span>
+              </label>
+              <select class="form-select" name="payMethod" id="payMethod">
+                <option value="銀行轉帳">銀行轉帳</option>
+                <option value="信用卡">信用卡</option>
+                <option value="行動支付">行動支付</option>
+              </select>
             </div>
             <div class="mb-4">
               <label for="message" class="form-label">留言</label>
@@ -171,7 +189,7 @@
 </template>
 
 <script>
-import cartTable from '../../components/CartTable.vue';
+import cartTable from '../../components/forestage/CartTable.vue';
 
 export default {
   data() {

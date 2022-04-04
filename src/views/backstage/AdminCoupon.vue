@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import CouponModal from '../../components/CouponModal.vue';
-import deleteConfirm from '../../components/DeleteConfirm.vue';
+import CouponModal from '../../components/backstage/CouponModal.vue';
+import deleteConfirm from '../../components/backstage/DeleteConfirm.vue';
 
 export default {
   data() {

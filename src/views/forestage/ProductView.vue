@@ -105,8 +105,8 @@
 </template>
 
 <script>
-import Breadcrumb from '../../components/BreadcrumbComponent.vue';
-import ProductSidenav from '../../components/ProductSidenav.vue';
+import Breadcrumb from '../../components/forestage/BreadcrumbComponent.vue';
+import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
 import PaginationComponent from '../../components/PaginationComponent.vue';
 
 export default {

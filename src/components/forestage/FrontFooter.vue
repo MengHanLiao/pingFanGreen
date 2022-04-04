@@ -5,7 +5,7 @@
         <router-link to="/" class="d-flex align-items-center mb-2">
           <img
             class="me-1"
-            src="../assets/images/icons/logo.png"
+            src="../../assets/images/icons/logo.png"
             alt="logo.png"
             style="width: 36px"
           />
@@ -35,14 +35,14 @@
 .github{
   width: 32px;
   height: 32px;
-  background-image: url('../assets/images/icons/github.png');
+  background-image: url('../../assets/images/icons/github.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .codepen{
   width: 32px;
   height: 32px;
-  background-image: url('../assets/images/icons/codepen.png');
+  background-image: url('../../assets/images/icons/codepen.png');
   background-repeat: no-repeat;
   background-size: cover;
 }

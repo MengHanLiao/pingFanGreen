@@ -88,8 +88,8 @@
 
 <script>
 import PaginationComponent from '../../components/PaginationComponent.vue';
-import productModal from '../../components/ProductModal.vue';
-import deleteConfirm from '../../components/DeleteConfirm.vue';
+import productModal from '../../components/backstage/ProductModal.vue';
+import deleteConfirm from '../../components/backstage/DeleteConfirm.vue';
 
 export default {
   data() {
