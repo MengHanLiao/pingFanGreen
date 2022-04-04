@@ -7,7 +7,7 @@
         navigation
         :pagination="{ clickable: true }"
         :autoplay="{
-          delay: 2000,
+          delay: 4000,
           disableOnInteraction: false,
         }"
       >
@@ -17,7 +17,7 @@
               <div class="row">
                 <div class="col-md-6 offset-md-1">
                   <h3 class="display-5 mt-10 mb-3">用多肉裝飾你的家</h3>
-                  <router-link to="/product"
+                  <router-link to="/products"
                     class="btn btn-outline-dark w-50 border-2">
                     開始選購</router-link>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col-md-6 offset-md-1">
                   <h3 class="display-5 mt-10">春日多肉季</h3>
                   <p class="fs-3 text-gray">商品折扣中</p>
-                  <router-link to="/product"
+                  <router-link to="/products"
                     class="btn btn-outline-dark w-50 border-2">
                     開始選購</router-link>
                 </div>
@@ -47,9 +47,9 @@
                 <div class="col-md-6 offset-md-1">
                   <h3 class="display-5 mt-10">獨一無二</h3>
                   <p class="fs-3 text-gray">母親節禮物客製化</p>
-                  <router-link to="/product"
+                  <router-link to="/customization"
                     class="btn btn-outline-dark w-50 border-2">
-                    聯絡我們</router-link>
+                    瞭解更多</router-link>
                 </div>
               </div>
             </div>
@@ -74,10 +74,8 @@
             <p>我們不只提供健康的多肉盆栽、客製化禮物，
             也推出一系列的養育心得文章，歡迎大家聯絡交流。</p>
             <div class="mt-5 mb-2 mb-lg-12">
-              <router-link to="/customization" custom v-slot="{ navigate }">
-                <button @click="navigate" role="link"
-                  class="btn btn-green-100" type="button">聯絡我們</button>
-              </router-link>
+              <button @click="openContactModal"
+                class="btn btn-green-100" type="button">聯絡我們</button>
               <a href="#" class="p-3"><img src="../../assets/images/icons/facebook.png"
                 style="width: 2rem" alt="fb"></a>
               <a href="#" class="p-3"><img src="../../assets/images/icons/instagram.png"
@@ -171,12 +169,14 @@
         </div>
       </div>
     </section>
+    <contactModal ref="contactModal"></contactModal>
   </div>
 </template>
 
 <script>
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import contactModal from '../../components/forestage/ContactModal.vue';
 // eslint-disable-next-line import/no-relative-packages
 import '../../../node_modules/swiper/swiper.scss';
 
@@ -229,6 +229,12 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    contactModal,
+  },
+  methods: {
+    openContactModal() {
+      this.$refs.contactModal.openModal();
+    },
   },
   mounted() {
     const loader = this.$loading.show();

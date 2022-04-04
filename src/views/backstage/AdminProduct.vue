@@ -162,22 +162,12 @@ export default {
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`,
         )
         .then(() => {
-          // this.$httpMessageState({
-          //   style: 'success',
-          //   title: '產品刪除',
-          //   content: res.data.message,
-          // });
           this.getProducts();
           const controlDeleteModal = this.$refs.deleteModal;
           controlDeleteModal.closeModal();
         })
         .catch((err) => {
           console.dir(err);
-          // this.$httpMessageState({
-          //   style: 'danger',
-          //   title: '產品刪除',
-          //   content: err.response.data.message,
-          // });
         });
     },
   },

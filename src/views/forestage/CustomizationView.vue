@@ -36,8 +36,25 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-4">
-        <button class="w-100 btn btn-green-500 text-white" type="button">聯絡我們</button>
+        <button class="w-100 btn btn-green-500 text-white" type="button"
+          @click="openContactModal">聯絡我們</button>
       </div>
     </div>
+    <ContactModal ref="contactModal"></ContactModal>
   </div>
 </template>
+
+<script>
+import ContactModal from '../../components/forestage/ContactModal.vue';
+
+export default {
+  components: {
+    ContactModal,
+  },
+  methods: {
+    openContactModal() {
+      this.$refs.contactModal.openModal();
+    },
+  },
+};
+</script>
