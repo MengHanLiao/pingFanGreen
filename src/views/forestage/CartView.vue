@@ -12,11 +12,12 @@
     </ul>
     <template v-if="currentStep === 0">
       <h2 class="text-center mb-7 mb-md-7">購物車</h2>
-      <cartTable :can-change="true"></cartTable>
+      <cartTable :can-change="true" @check-amount="reachAmount"></cartTable>
       <div class="d-flex justify-content-center justify-content-md-end">
         <button
           class="btn btn-lg btn-green-500 text-white px-10"
           type="button"
+          :disabled="!canCheck"
           @click="this.currentStep++"
         >
           開始結帳
@@ -126,9 +127,13 @@
     <template v-else-if="currentStep === 2">
       <h2 class="text-center mb-7 mb-md-7">確認訂單</h2>
       <h4 class="text-center">購買人資料</h4>
-      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4">
-          <ul class="list-style-none text-center ps-0">
+      <div class="d-flex align-items-center mb-7">
+        <div class="d-none d-md-block w-50 me-3">
+          <img class="object-fit-cover" style="height: 300px"
+            src="../../assets/images/lastStep.jpg" alt="circlePlants">
+        </div>
+        <!-- <div class="col-md-6 col-lg-4"> -->
+          <ul class="w-50 list-style-none ps-0">
             <li>姓名： {{ userForm.user.name }}</li>
             <li>信箱： {{ userForm.user.email }}</li>
             <li>電話： {{ userForm.user.tel }}</li>
@@ -137,7 +142,7 @@
               留言：<p class="ps-2">{{ userForm.message }}</p>
             </li>
           </ul>
-        </div>
+        <!-- </div> -->
       </div>
       <h4 class="text-center">訂單內容</h4>
       <cartTable :can-change="false"></cartTable>
@@ -145,7 +150,7 @@
         <button
             class="btn btn-lg btn-green-500 text-white px-10"
             type="button"
-            @click="this.currentStep++"
+            @click="checkout"
           >
             確認付款
         </button>
@@ -183,6 +188,8 @@ export default {
         message: '',
       },
       orderId: '',
+      canChange: true,
+      canCheck: false,
     };
   },
   components: {
@@ -202,7 +209,6 @@ export default {
         });
         this.orderId = res.data.orderId;
         this.currentStep += 1;
-        console.log(this.orderId);
       }).catch((err) => {
         this.$swal({
           icon: 'error',
@@ -210,6 +216,13 @@ export default {
           showCloseButton: true,
         });
       });
+    },
+    reachAmount(amount) {
+      if (amount > 600) {
+        this.canCheck = true;
+      } else {
+        this.canCheck = false;
+      }
     },
     checkout() {
       this.$http.post(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`).then((res) => {
@@ -218,6 +231,7 @@ export default {
           title: res.data.message,
           showCloseButton: true,
         });
+        this.currentStep += 1;
       }).catch((err) => {
         this.$swal({
           icon: 'error',
@@ -225,15 +239,6 @@ export default {
           showCloseButton: true,
         });
       });
-    },
-  },
-  watch: {
-    currentStep() {
-      if (this.currentStep === 0) {
-        this.$refs.form.resetForm();
-        this.user.message = '';
-        this.orderId = '';
-      }
     },
   },
   created() {

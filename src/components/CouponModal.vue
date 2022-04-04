@@ -14,7 +14,7 @@
           <h5 class="modal-title" id="exampleModalLabel">
             <span v-if="isNew">新增優惠卷</span>
             <span v-else>編輯優惠卷</span>
-          </h5>
+          </h5>{{tempCoupon}}
           <button
             type="button"
             class="btn-close"
@@ -125,7 +125,6 @@ export default {
   watch: {
     coupon() {
       this.tempCoupon = this.coupon;
-      // 將時間格式改為 YYYY-MM-DD
       const dateAndTime = new Date(this.tempCoupon.due_date * 1000)
         .toISOString()
         .split('T');

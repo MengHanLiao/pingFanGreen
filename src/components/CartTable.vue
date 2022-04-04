@@ -83,9 +83,11 @@
           class="form-control-sm"
           type="text"
           placeholder="輸入 ILoveGreen 打九折"
+          v-model="coupoun"
+          @change="useCoupon"
         />
         <p class="fs-sm mb-0">
-          複製: <span class="user-select-all">ILoveGreen</span>
+          新綠優惠碼: <span class="user-select-all">ILoveGreen</span>
         </p>
       </label>
       <div class="fs-5"
@@ -94,7 +96,7 @@
         <p class="mb-0">
           折價後： <span class="fs-4">{{ finalTotal }}</span> 元
         </p>
-        <span class="text-muted" v-if="finalTotal !== total"
+        <span class="text-primary" v-if="finalTotal !== total"
           >省下 {{ total - finalTotal }} 元</span
         >
       </div>
@@ -109,9 +111,18 @@ export default {
       carts: [],
       total: 0,
       finalTotal: 0,
+      coupoun: '',
     };
   },
-  props: ['can-change'],
+  props: {
+    canChange: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
+  },
+  // props: ['can-change'],
   methods: {
     getCart() {
       this.$http
@@ -128,7 +139,6 @@ export default {
         });
     },
     updateCart(item) {
-      console.log(item);
       const updateProduct = {
         data: {
           product_id: item.product_id,
@@ -138,11 +148,10 @@ export default {
       this.$http
         .put(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, updateProduct)
         .then((res) => {
-          console.log(res);
           this.getCart();
           this.$swal({
             icon: 'success',
-            title: '更新數量成功',
+            title: res.data.message,
             showCloseButton: true,
           });
         })
@@ -175,6 +184,34 @@ export default {
             showCloseButton: true,
           });
         });
+    },
+    useCoupon() {
+      const couponData = {
+        data: {
+          code: this.coupoun,
+        },
+      };
+      this.$http
+        .post(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/coupon`, couponData).then((res) => {
+          this.$swal({
+            icon: 'success',
+            title: res.data.message,
+            showCloseButton: true,
+          });
+          this.getCart();
+        }).catch((err) => {
+          this.$swal({
+            icon: 'error',
+            title: err.response.data.message,
+            showCloseButton: true,
+          });
+          this.getCart();
+        });
+    },
+  },
+  watch: {
+    finalTotal() {
+      this.$emit('check-amount', this.finalTotal);
     },
   },
   created() {
