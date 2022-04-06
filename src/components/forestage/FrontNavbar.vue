@@ -57,33 +57,7 @@
             </li>
           </ul>
           <div class="d-lg-none border-top pt-2">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/products/仙人掌"
-                  @click="hideOffcanvas">
-                  仙人掌系列</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/products/熊童子"
-                  @click="hideOffcanvas">
-                  熊童子系列</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/products/花形多肉"
-                  @click="hideOffcanvas">
-                  花形多肉</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/products/石頭玉"
-                  @click="hideOffcanvas">
-                  石頭玉家族</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link ps-0" to="/products/盆栽器具"
-                  @click="hideOffcanvas">
-                  盆栽器具</router-link>
-              </li>
-            </ul>
+            <ProductSidenav :can-hide="true" @emit-hide="hideOffcanvas"></ProductSidenav>
           </div>
         </div>
       </div>
@@ -119,12 +93,16 @@
 
 <script>
 import Offcanvas from 'bootstrap/js/dist/offcanvas';
+import ProductSidenav from './ProductSidenav.vue';
 
 export default {
   data() {
     return {
       bsOffcanvas: '',
     };
+  },
+  components: {
+    ProductSidenav,
   },
   methods: {
     showOffcanvas() {

@@ -1,7 +1,8 @@
 <template>
   <ul class="nav flex-column">
     <li class="nav-item" v-for="(category,index) in categories" :key="index+'dasdf'">
-      <router-link :to="`/products/${category}`" class="nav-link">{{ category }}</router-link>
+      <router-link :to="`/products/${category}`" @click="hideOffcanvas"
+        class="nav-link ps-0">{{ category }}</router-link>
     </li>
   </ul>
 </template>
@@ -12,6 +13,12 @@ export default {
     return {
       categories: [],
     };
+  },
+  props: {
+    canHide: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     getCategory() {
@@ -28,6 +35,11 @@ export default {
       }).catch((err) => {
         console.dir(err);
       });
+    },
+    hideOffcanvas() {
+      if (this.canHide) {
+        this.$emit('emit-hide');
+      }
     },
   },
   mounted() {

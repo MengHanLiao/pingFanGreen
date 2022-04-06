@@ -2,11 +2,11 @@
   <div class="container pt-7 pt-md-8 pb-12">
     <h2 class="text-center mb-7 mb-md-7">商品專區</h2>
     <div class="row">
-      <div class="col-md-3 d-none d-md-block">
+      <div class="col-lg-3 d-none d-lg-block">
         <h5>商品分類</h5>
         <ProductSidenav></ProductSidenav>
       </div>
-      <div class="col-md-9">
+      <div class="col-lg-9">
         <div class="row">
           <nav class="col-md-6" aria-label="breadcrumb">
             <Breadcrumb></Breadcrumb>
