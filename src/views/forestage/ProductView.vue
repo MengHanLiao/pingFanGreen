@@ -201,7 +201,8 @@ export default {
     },
   },
   mounted() {
-    this.getData();
+    const pagesCategory = this.$route.params.category || '';
+    this.getData(1, pagesCategory);
   },
 };
 </script>

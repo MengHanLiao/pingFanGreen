@@ -94,7 +94,7 @@
           <h2 class="text-center mb-6">系列商品</h2>
           <div class="row gy-4">
             <div class="col-md-4" v-for="category in categories" :key="category.seriesName">
-              <router-link class="overlay" :to="`/products/${category}`">
+              <router-link class="overlay" :to="`/products/${category.seriesName}`">
                 <img class="overlay-img object-fit-cover"
                   :src="require(`../../assets/images/${category.imgName}.jpg`)"
                   style="height: 300px" alt="series1">
