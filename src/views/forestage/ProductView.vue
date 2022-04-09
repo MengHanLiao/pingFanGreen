@@ -108,6 +108,7 @@
 import Breadcrumb from '../../components/forestage/BreadcrumbComponent.vue';
 import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
 import PaginationComponent from '../../components/PaginationComponent.vue';
+import SwalFire from '../../components/forestage/SwalFire.vue';
 
 export default {
   data() {
@@ -120,6 +121,7 @@ export default {
       favorite: JSON.parse(localStorage.getItem('favorite')) || [],
     };
   },
+  mixins: [SwalFire],
   components: {
     Breadcrumb,
     ProductSidenav,
@@ -155,37 +157,21 @@ export default {
         )
         .then((res) => {
           this.loadItem = '';
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
         })
         .catch((err) => {
           this.loadItem = '';
-          this.$swal({
-            icon: 'errpr',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     toggleFavorite(id) {
       const favoriteIndex = this.favorite.findIndex((item) => item === id);
       if (favoriteIndex === -1) {
         this.favorite.push(id);
-        this.$swal({
-          icon: 'success',
-          title: '加入收藏',
-          showCloseButton: true,
-        });
+        this.successFire('加入收藏');
       } else {
         this.favorite.splice(favoriteIndex, 1);
-        this.$swal({
-          icon: 'success',
-          title: '取消收藏',
-          showCloseButton: true,
-        });
+        this.warningFire('取消收藏');
       }
     },
   },

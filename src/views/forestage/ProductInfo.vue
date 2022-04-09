@@ -138,6 +138,7 @@
 
 <script>
 import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
+import SwalFire from '../../components/forestage/SwalFire.vue';
 
 export default {
   data() {
@@ -148,6 +149,7 @@ export default {
     };
   },
   props: ['id'],
+  mixins: [SwalFire],
   components: {
     ProductSidenav,
   },
@@ -178,37 +180,21 @@ export default {
         )
         .then((res) => {
           this.loadItem = '';
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
         })
         .catch((err) => {
           this.loadItem = '';
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     toggleFavorite(id) {
       const favoriteIndex = this.favorite.findIndex((item) => item === id);
       if (favoriteIndex === -1) {
         this.favorite.push(id);
-        this.$swal({
-          icon: 'success',
-          title: '加入收藏',
-          showCloseButton: true,
-        });
+        this.successFire('加入收藏');
       } else {
         this.favorite.splice(favoriteIndex, 1);
-        this.$swal({
-          icon: 'success',
-          title: '取消收藏',
-          showCloseButton: true,
-        });
+        this.warningFire('取消收藏');
       }
     },
   },

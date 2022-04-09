@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import SwalFire from '../../components/forestage/SwalFire.vue';
+
 export default {
   data() {
     return {
@@ -93,6 +95,7 @@ export default {
       favorite: JSON.parse(localStorage.getItem('favorite')) || [],
     };
   },
+  mixins: [SwalFire],
   methods: {
     getProduct() {
       this.favorite.forEach((id) => {
@@ -112,18 +115,10 @@ export default {
       const favoriteIndex = this.favorite.findIndex((item) => item === id);
       if (favoriteIndex === -1) {
         this.favorite.push(id);
-        this.$swal({
-          icon: 'success',
-          title: '加入收藏',
-          showCloseButton: true,
-        });
+        this.successFire('加入收藏');
       } else {
         this.favorite.splice(favoriteIndex, 1);
-        this.$swal({
-          icon: 'success',
-          title: '取消收藏',
-          showCloseButton: true,
-        });
+        this.warningFire('取消收藏');
       }
     },
   },

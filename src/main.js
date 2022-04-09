@@ -31,6 +31,7 @@ app.use(VueSweetalert2, {
   focusConfirm: false,
   confirmButtonText: '確認',
   cancelButtonText: '取消',
+  showCloseButton: true,
   timer: 3000,
 });
 
