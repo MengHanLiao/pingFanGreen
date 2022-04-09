@@ -20,7 +20,7 @@
       </template>
       <template v-else>
         <div class="col-md-8">
-          <div class="row">
+          <div class="row gy-4">
             <div class="col-md-6" v-for="product in products" :key="product.id">
               <div
                 class="card"
@@ -43,27 +43,7 @@
                   </button>
                 </router-link>
                 <div class="card-body">
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <h5 class="text-truncate">{{ product.title }}</h5>
-                    <button
-                      class="btn"
-                      type="button"
-                      @click="toggleFavorite(product.id)"
-                    >
-                      <img
-                        v-if="favorite.includes(product.id)"
-                        src="../../assets/images/icons/favorite_black.svg"
-                        alt="myFavorite"
-                      />
-                      <img
-                        v-else
-                        src="../../assets/images/icons/favorite_border_black.svg"
-                        alt="myFavorite"
-                      />
-                    </button>
-                  </div>
+                  <h5 class="text-truncate">{{ product.title }}</h5>
                   <p class="text-primary fs-5 mb-0">
                     <del
                       class="d-block text-muted fs-sm"
@@ -73,6 +53,36 @@
                     >
                     NT$ {{ product.price }}
                   </p>
+                  <div class="d-flex justify-content-end">
+                    <button class="btn" type="button"
+                      @click="toggleFavorite(product.id)">
+                      <img v-if="favorite.includes(product.id)"
+                        src="../../assets/images/icons/favorite_black.svg"
+                        alt="myFavorite"
+                      />
+                      <img v-else
+                        src="../../assets/images/icons/favorite_border_black.svg"
+                        alt="myFavorite"
+                      />
+                    </button>
+                    <button
+                      class="btn"
+                      :class="{ disabled: product.id === loadItem }"
+                      type="button"
+                      @click="addToCart(product.id)"
+                    >
+                      <div
+                        class="spinner-grow"
+                        role="status"
+                        :class="{ 'd-none': product.id !== loadItem }"
+                      ></div>
+                      <img
+                        :class="{ 'd-none': product.id === loadItem }"
+                        src="../../assets/images/icons/shopping_cart_black.svg"
+                        alt="cart"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,6 +96,7 @@
 <script>
 import SwalFire from '../../components/forestage/SwalFire.vue';
 import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
+import AddToCart from '../../methods/ProductMixin/AddToCart';
 
 export default {
   data() {
@@ -95,7 +106,7 @@ export default {
       products: [],
     };
   },
-  mixins: [SwalFire, ToggleFavorite],
+  mixins: [SwalFire, ToggleFavorite, AddToCart],
   methods: {
     getProduct() {
       this.favorite.forEach((id) => {

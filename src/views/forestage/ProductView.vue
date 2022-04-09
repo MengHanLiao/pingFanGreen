@@ -110,6 +110,7 @@
 import Breadcrumb from '../../components/forestage/BreadcrumbComponent.vue';
 import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
 import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
+import AddToCart from '../../methods/ProductMixin/AddToCart';
 import PaginationComponent from '../../components/PaginationComponent.vue';
 import SwalFire from '../../components/forestage/SwalFire.vue';
 
@@ -120,12 +121,11 @@ export default {
       isResults: false,
       products: [],
       pagination: [],
-      loadItem: '',
       keyword: '',
     };
   },
   props: ['category'],
-  mixins: [SwalFire, ToggleFavorite],
+  mixins: [SwalFire, ToggleFavorite, AddToCart],
   components: {
     Breadcrumb,
     ProductSidenav,
@@ -145,27 +145,6 @@ export default {
         })
         .catch((err) => {
           console.dir(err);
-        });
-    },
-    addToCart(id, qty = 1) {
-      this.loadItem = id;
-      this.$http
-        .post(
-          `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`,
-          {
-            data: {
-              product_id: id,
-              qty,
-            },
-          },
-        )
-        .then((res) => {
-          this.loadItem = '';
-          this.successFire(res.data.message);
-        })
-        .catch((err) => {
-          this.loadItem = '';
-          this.failFire(err.response.data.message);
         });
     },
     searchProduct() {

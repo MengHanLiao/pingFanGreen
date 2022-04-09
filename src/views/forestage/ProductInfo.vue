@@ -30,12 +30,20 @@
                 </option>
               </select>
             </label>
-            <button class="btn btn-green-500 text-white w-100 mb-3" @click="addToCart(product.id)">
+            <button class="btn btn-green-500 text-white w-100 mb-3"
+              :class="{ disabled: product.id === loadItem }"
+              @click="addToCart(product.id, qty)">
+              <div
+                class="spinner-grow me-2"
+                role="status"
+                :class="{ 'd-none': product.id !== loadItem }"
+              ></div>
               <img
                 src="../../assets/images/icons/shopping_cart_black.svg"
                 class="me-2"
                 style="width: 1.25rem"
                 alt="cart"
+                :class="{ 'd-none': product.id === loadItem }"
               />加入購物車
             </button>
             <button class="btn btn-outline-dark w-100 mb-3" @click="toggleFavorite(product.id)">
@@ -139,6 +147,7 @@
 <script>
 import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
 import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
+import AddToCart from '../../methods/ProductMixin/AddToCart';
 import SwalFire from '../../components/forestage/SwalFire.vue';
 
 export default {
@@ -149,7 +158,7 @@ export default {
     };
   },
   props: ['id'],
-  mixins: [SwalFire, ToggleFavorite],
+  mixins: [SwalFire, ToggleFavorite, AddToCart],
   components: {
     ProductSidenav,
   },
@@ -164,27 +173,6 @@ export default {
         })
         .catch((err) => {
           console.dir(err);
-        });
-    },
-    addToCart(id) {
-      this.loadItem = id;
-      this.$http
-        .post(
-          `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`,
-          {
-            data: {
-              product_id: id,
-              qty: this.qty,
-            },
-          },
-        )
-        .then((res) => {
-          this.loadItem = '';
-          this.successFire(res.data.message);
-        })
-        .catch((err) => {
-          this.loadItem = '';
-          this.failFire(err.response.data.message);
         });
     },
   },
