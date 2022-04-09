@@ -109,7 +109,7 @@
 <script>
 import Breadcrumb from '../../components/forestage/BreadcrumbComponent.vue';
 import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
-import ToggleFavorite from '../../components/forestage/ProductMixin/ToggleFavorite.vue';
+import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
 import PaginationComponent from '../../components/PaginationComponent.vue';
 import SwalFire from '../../components/forestage/SwalFire.vue';
 
