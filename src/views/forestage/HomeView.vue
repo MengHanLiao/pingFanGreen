@@ -11,45 +11,16 @@
           disableOnInteraction: false,
         }"
       >
-        <swiper-slide>
-          <div class="hero eventA">
+        <swiper-slide v-for="event in hero" :key="`${event.title}+'2324425`">
+          <div class="hero" :class="event.eventBackground">
             <div class="container">
               <div class="row">
                 <div class="col-md-6 offset-md-1">
-                  <h3 class="display-5 mt-10 mb-3">用多肉裝飾你的家</h3>
-                  <router-link to="/products"
+                  <h3 class="display-5 mt-10 mb-3">{{ event.title }}</h3>
+                  <p class="fs-3 text-gray">{{ event.subtitle }}</p>
+                  <router-link :to="event.btn.link"
                     class="btn btn-outline-dark w-50 border-2">
-                    開始選購</router-link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="hero eventB">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 offset-md-1">
-                  <h3 class="display-5 mt-10">春日多肉季</h3>
-                  <p class="fs-3 text-gray">商品折扣中</p>
-                  <router-link to="/products"
-                    class="btn btn-outline-dark w-50 border-2">
-                    開始選購</router-link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="hero eventC">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 offset-md-1">
-                  <h3 class="display-5 mt-10">獨一無二</h3>
-                  <p class="fs-3 text-gray">母親節禮物客製化</p>
-                  <router-link to="/customization"
-                    class="btn btn-outline-dark w-50 border-2">
-                    瞭解更多</router-link>
+                    {{ event.btn.text }}</router-link>
                 </div>
               </div>
             </div>
@@ -184,6 +155,26 @@ export default {
   data() {
     return {
       modules: [Navigation, Pagination, Autoplay],
+      hero: [
+        {
+          title: '用多肉裝飾你的家',
+          subtitle: '',
+          eventBackground: 'eventA',
+          btn: { text: '開始選購', link: '/products' },
+        },
+        {
+          title: '春日多肉季',
+          subtitle: '商品折扣中',
+          eventBackground: 'eventB',
+          btn: { text: '開始選購', link: '/products' },
+        },
+        {
+          title: '獨一無二',
+          subtitle: '母親節禮物客製化',
+          eventBackground: 'eventC',
+          btn: { text: '開始選購', link: '/customization' },
+        },
+      ],
       categories: [
         {
           seriesName: '仙人掌',
