@@ -12,12 +12,6 @@ const routes = [
       {
         path: 'products/:category?',
         component: () => import('../views/forestage/ProductView.vue'),
-        meta: {
-          breadcrumb: [{
-            name: '全部商品',
-            link: '/products',
-          }],
-        },
       },
       {
         path: 'product/:id',

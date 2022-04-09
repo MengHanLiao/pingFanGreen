@@ -10,7 +10,10 @@
 export default {
   data() {
     return {
-      routeList: [...this.$route.meta.breadcrumb],
+      routeList: [{
+        name: '全部商品',
+        link: '/products',
+      }],
     };
   },
   watch: {

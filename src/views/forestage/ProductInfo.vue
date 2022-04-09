@@ -138,18 +138,18 @@
 
 <script>
 import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
+import ToggleFavorite from '../../components/forestage/ProductMixin/ToggleFavorite.vue';
 import SwalFire from '../../components/forestage/SwalFire.vue';
 
 export default {
   data() {
     return {
       product: {},
-      favorite: JSON.parse(localStorage.getItem('favorite')) || [],
       qty: 1,
     };
   },
   props: ['id'],
-  mixins: [SwalFire],
+  mixins: [SwalFire, ToggleFavorite],
   components: {
     ProductSidenav,
   },
@@ -186,24 +186,6 @@ export default {
           this.loadItem = '';
           this.failFire(err.response.data.message);
         });
-    },
-    toggleFavorite(id) {
-      const favoriteIndex = this.favorite.findIndex((item) => item === id);
-      if (favoriteIndex === -1) {
-        this.favorite.push(id);
-        this.successFire('加入收藏');
-      } else {
-        this.favorite.splice(favoriteIndex, 1);
-        this.warningFire('取消收藏');
-      }
-    },
-  },
-  watch: {
-    favorite: {
-      handler() {
-        localStorage.setItem('favorite', JSON.stringify(this.favorite));
-      },
-      deep: true,
     },
   },
   mounted() {

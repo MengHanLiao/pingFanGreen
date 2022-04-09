@@ -85,6 +85,7 @@
 
 <script>
 import SwalFire from '../../components/forestage/SwalFire.vue';
+import ToggleFavorite from '../../components/forestage/ProductMixin/ToggleFavorite.vue';
 
 export default {
   data() {
@@ -92,10 +93,9 @@ export default {
       isHover: false,
       loadItem: '',
       products: [],
-      favorite: JSON.parse(localStorage.getItem('favorite')) || [],
     };
   },
-  mixins: [SwalFire],
+  mixins: [SwalFire, ToggleFavorite],
   methods: {
     getProduct() {
       this.favorite.forEach((id) => {
@@ -110,24 +110,6 @@ export default {
             console.dir(err);
           });
       });
-    },
-    toggleFavorite(id) {
-      const favoriteIndex = this.favorite.findIndex((item) => item === id);
-      if (favoriteIndex === -1) {
-        this.favorite.push(id);
-        this.successFire('加入收藏');
-      } else {
-        this.favorite.splice(favoriteIndex, 1);
-        this.warningFire('取消收藏');
-      }
-    },
-  },
-  watch: {
-    favorite: {
-      handler() {
-        localStorage.setItem('favorite', JSON.stringify(this.favorite));
-      },
-      deep: true,
     },
   },
   mounted() {
