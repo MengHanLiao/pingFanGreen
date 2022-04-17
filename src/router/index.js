@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
-    component: () => import('../views/forestage/frontView.vue'),
+    component: () => import('../views/forestage/FrontView.vue'),
     children: [
       {
         path: '',
