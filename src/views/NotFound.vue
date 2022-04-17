@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FrontNavbar></FrontNavbar>
+    <FrontNavbar />
     <div class="container text-center pt-7 pt-md-8 pb-12">
       <h2 class="mb-7 mb-md-7">404</h2>
       <p>您想找的頁面不存在</p>
@@ -13,7 +13,7 @@
         alt="banner"
       />
     </div>
-    <FrontFooter></FrontFooter>
+    <FrontFooter />
   </div>
 </template>
 

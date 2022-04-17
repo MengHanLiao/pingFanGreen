@@ -1,7 +1,7 @@
 <template>
   <div v-if="isSignup">
-    <DashBoardNavbar></DashBoardNavbar>
-    <router-view></router-view>
+    <DashBoardNavbar />
+    <Router-View />
   </div>
 </template>
 

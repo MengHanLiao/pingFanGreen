@@ -94,7 +94,6 @@
 </template>
 
 <script>
-import SwalFire from '../../components/forestage/SwalFire.vue';
 import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
 import AddToCart from '../../methods/ProductMixin/AddToCart';
 
@@ -106,7 +105,7 @@ export default {
       products: [],
     };
   },
-  mixins: [SwalFire, ToggleFavorite, AddToCart],
+  mixins: [ToggleFavorite, AddToCart],
   methods: {
     getProduct() {
       this.favorite.forEach((id) => {

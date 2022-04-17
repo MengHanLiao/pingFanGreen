@@ -122,6 +122,8 @@
 </template>
 
 <script>
+import SwalFire from '../SwalFire.vue';
+
 export default {
   data() {
     return {
@@ -133,6 +135,7 @@ export default {
       isDiscount: false,
     };
   },
+  mixins: [SwalFire],
   methods: {
     getCart() {
       this.$http
@@ -145,11 +148,7 @@ export default {
           this.finalTotal = res.data.data.final_total;
         })
         .catch((err) => {
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     updateCart(item) {
@@ -166,18 +165,10 @@ export default {
         )
         .then((res) => {
           this.getCart();
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     deleteCart(cartId) {
@@ -188,18 +179,10 @@ export default {
         .then((res) => {
           console.log(res);
           this.getCart();
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     useCoupon() {
@@ -214,21 +197,13 @@ export default {
           couponData,
         )
         .then((res) => {
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
           this.isDiscount = true;
           this.coupoun = res.data.message;
           this.finalTotal = res.data.data.final_total;
         })
         .catch((err) => {
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
           this.getCart();
         });
     },

@@ -40,11 +40,6 @@
                 @click="hideOffcanvas">
                 產品專區</router-link>
             </li>
-            <!-- <li class="nav-item">
-              <router-link class="nav-link" to="/article"
-                @click="hideOffcanvas">
-                所有文章</router-link>
-            </li> -->
             <li class="nav-item">
               <router-link class="nav-link" to="/customization"
                 @click="hideOffcanvas">

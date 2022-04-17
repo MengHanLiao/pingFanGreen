@@ -105,6 +105,8 @@
 </template>
 
 <script>
+import SwalFire from './SwalFire.vue';
+
 export default {
   data() {
     return {
@@ -122,6 +124,7 @@ export default {
       },
     },
   },
+  mixins: [SwalFire],
   methods: {
     getCart() {
       this.$http
@@ -148,18 +151,10 @@ export default {
         .put(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, updateProduct)
         .then((res) => {
           this.getCart();
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          this.$swal({
-            icon: 'err',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     deleteCart(cartId) {
@@ -170,18 +165,10 @@ export default {
         .then((res) => {
           console.log(res);
           this.getCart();
-          this.$swal({
-            icon: 'success',
-            title: '刪除成功',
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          this.$swal({
-            icon: 'err',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
         });
     },
     useCoupon() {
@@ -192,18 +179,10 @@ export default {
       };
       this.$http
         .post(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/coupon`, couponData).then((res) => {
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            showCloseButton: true,
-          });
+          this.successFire(res.data.message);
           this.getCart();
         }).catch((err) => {
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            showCloseButton: true,
-          });
+          this.failFire(err.response.data.message);
           this.getCart();
         });
     },

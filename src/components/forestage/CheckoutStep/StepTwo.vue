@@ -107,6 +107,8 @@
 </template>
 
 <script>
+import SwalFire from '../SwalFire.vue';
+
 export default {
   data() {
     return {
@@ -121,6 +123,7 @@ export default {
       },
     };
   },
+  mixins: [SwalFire],
   methods: {
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
@@ -128,19 +131,11 @@ export default {
     },
     submitOrder() {
       this.$http.post(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/order`, { data: this.userForm }).then((res) => {
-        // this.$swal({
-        //   icon: 'success',
-        //   title: res.data.message,
-        //   showCloseButton: true,
-        // });
+        this.successFire(res.data.message);
         this.$emit('emit-orderid', res.data.orderId);
         this.goNext();
       }).catch((err) => {
-        this.$swal({
-          icon: 'error',
-          title: err.response.data.message,
-          showCloseButton: true,
-        });
+        this.failFire(err.response.data.message);
       });
     },
     goNext() {

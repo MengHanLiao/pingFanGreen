@@ -4,12 +4,12 @@
     <div class="row">
       <div class="col-lg-3 d-none d-lg-block">
         <h5>商品分類</h5>
-        <ProductSidenav></ProductSidenav>
+        <ProductSidenav />
       </div>
       <div class="col-lg-9">
         <div class="row">
           <nav class="col-md-6" aria-label="breadcrumb">
-            <Breadcrumb></Breadcrumb>
+            <Breadcrumb />
           </nav>
           <div class="col-md-5 offset-md-1">
             <div class="input-group mb-3">

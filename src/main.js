@@ -6,6 +6,7 @@ import VueAxios from 'vue-axios';
 import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import VueSweetalert2 from 'vue-sweetalert2';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import {
   Form, Field, ErrorMessage, configure, defineRule,
 } from 'vee-validate';
@@ -21,6 +22,7 @@ const app = createApp(App);
 
 app.use(router);
 app.use(VueAxios, axios);
+app.use(CKEditor);
 app.use(VueLoading, {
   opacity: 0.8,
 }, {
