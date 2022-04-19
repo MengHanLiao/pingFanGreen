@@ -9,7 +9,8 @@
       <div class="col-md-9">
         <div class="row row-cols-1 row-cols-md-2 mb-5">
           <div class="col mb-3">
-            <img :src="product.imageUrl" alt="main" />
+            <img class="object-fit-cover" :src="product.imageUrl"
+              alt="main" style="height: 500px"/>
           </div>
           <div class="col">
             <h3 class="fs-4 mb-4">{{ product.title }}</h3>
@@ -20,11 +21,9 @@
               <del class="fs-sm text-gray me-2">NT$ {{ product.origin_price }}</del>
               NT$ {{ product.price }}
             </p>
-            <label class="d-flex mb-3">
+            <label class="d-flex align-items-center mb-3">
+              <span class="d-block w-50">購買數量：</span>
               <select class="form-select" name="productnum" v-model="qty">
-                <option value="請選擇數量" selected="selected">
-                  請選擇數量
-                </option>
                 <option :value="n" v-for="n in 10" :key="n + '98765'">
                   {{ n }}
                 </option>
@@ -39,7 +38,7 @@
                 :class="{ 'd-none': product.id !== loadItem }"
               ></div>
               <img
-                src="../../assets/images/icons/shopping_cart_black.svg"
+                src="@/assets/images/icons/shopping_cart_black.svg"
                 class="me-2"
                 style="width: 1.25rem"
                 alt="cart"
@@ -49,13 +48,13 @@
             <button class="btn btn-outline-dark w-100 mb-3" @click="toggleFavorite(product.id)">
               <template v-if="favorite.includes(product.id)">
                 <img class="object-fit-cover me-2" style="width: 1.25rem"
-                  src="../../assets/images/icons/favorite_black.svg"
+                  src="@/assets/images/icons/favorite_black.svg"
                   alt="favorite_fill"
                 />已加入收藏
               </template>
               <template v-else>
                 <img class="object-fit-cover me-2" style="width: 1.25rem"
-                  src="../../assets/images/icons/favorite_border_black.svg"
+                  src="@/assets/images/icons/favorite_border_black.svg"
                   alt="favorite_border"
                 />我的最愛
               </template>
@@ -151,10 +150,10 @@
 </template>
 
 <script>
-import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
-import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
-import AddToCart from '../../methods/ProductMixin/AddToCart';
-import SwalFire from '../../components/forestage/SwalFire.vue';
+import ProductSidenav from '@/components/forestage/ProductSidenav.vue';
+import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
+import AddToCart from '@/methods/ProductMixin/AddToCart';
+import SwalFire from '@/components/SwalFire.vue';
 
 export default {
   data() {

@@ -1,8 +1,8 @@
 <template>
   <div class="container pt-7 pt-md-8 pb-9 pb-md-12">
     <h2 class="text-center mb-7 mb-md-7">客製化產品</h2>
-    <img class="object-fit-cover mb-7" style="height: 400px"
-      src="../../assets/images/gift.jpg" alt="banner">
+    <img class="object-fit-cover img-h-lg mb-7"
+      src="@/assets/images/gift.jpg" alt="banner">
     <div class="text-center mb-7">
       <h3 class="text-primary fs-4 mb-5">客製化多肉盆栽實現你的願望</h3>
       <p>普通的多肉盆栽，送禮顯得不夠用心？<br>
@@ -14,16 +14,16 @@
     <h3 class="text-primary text-center fs-4 mb-5">給您參考，我們的作品</h3>
     <div class="row gy-3 gy-md-0 mb-7">
       <div class="col-md-4">
-        <img class="object-fit-cover" style="height: 400px"
-          src="../../assets/images/work1.jpg" alt="work1">
+        <img class="object-fit-cover img-h-lg"
+          src="@/assets/images/work1.jpg" alt="work1">
       </div>
       <div class="col-md-4">
-        <img class="object-fit-cover" style="height: 400px"
-          src="../../assets/images/work2.jpg" alt="work2">
+        <img class="object-fit-cover img-h-lg"
+          src="@/assets/images/work2.jpg" alt="work2">
       </div>
       <div class="col-md-4">
-        <img class="object-fit-cover" style="height: 400px"
-          src="../../assets/images/work3.jpg" alt="work3">
+        <img class="object-fit-cover img-h-lg"
+          src="@/assets/images/work3.jpg" alt="work3">
       </div>
     </div>
     <div class="text-center mb-7">
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import ContactModal from '../../components/forestage/ContactModal.vue';
+import ContactModal from '@/components/forestage/ContactModal.vue';
 
 export default {
   components: {

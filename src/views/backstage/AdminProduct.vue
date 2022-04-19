@@ -28,7 +28,7 @@
           <template v-else>
             <tr v-for="product in products" :key="product.id">
               <td>
-                <img :src="product.imageUrl" alt="" class="table-img" />
+                <img :src="product.imageUrl" alt="" class="table-img-lg" />
               </td>
               <td>{{ product.title }}</td>
               <td>{{ product.category }}</td>
@@ -78,18 +78,10 @@
   </div>
 </template>
 
-<style>
-.table-img {
-  width: 100px;
-  height: 75px;
-  object-fit: cover;
-}
-</style>
-
 <script>
-import PaginationComponent from '../../components/PaginationComponent.vue';
-import productModal from '../../components/backstage/ProductModal.vue';
-import deleteConfirm from '../../components/backstage/DeleteConfirm.vue';
+import PaginationComponent from '@/components/PaginationComponent.vue';
+import productModal from '@/components/backstage/ProductModal.vue';
+import deleteConfirm from '@/components/backstage/DeleteConfirm.vue';
 
 export default {
   data() {

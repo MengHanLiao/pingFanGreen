@@ -1,10 +1,9 @@
 <template>
-  <div class="container-fluid bg-white sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
+  <div class="container-fluid bg-white sticky-top px-0">
+    <nav class="navbar navbar-expand-lg navbar-light shadow px-3">
       <h1>
         <router-link to="/" class="logo d-flex align-items-center">
-          <img class="me-1" src="../../assets/images/icons/logo.png"
-            alt="logo.png" style="width: 3rem"/>
+          <img class="icon-w-lg me-1" src="@/assets/images/icons/logo.png" alt="logo.png"/>
           <span class="fs-3 d-flex flex-column logo-font">
             平方綠<small class="fs-sm text-center">多肉專賣店</small>
           </span>
@@ -19,8 +18,8 @@
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasLabel">
             <router-link to="/" class="d-flex align-items-center">
-              <img class="me-1" src="../../assets/images/icons/logo.png"
-                alt="logo.png" style="width:36px"/>
+              <img class="icon-w-lg me-1" src="@/assets/images/icons/logo.png"
+                alt="logo.png">
               <span class="fs-2 d-flex flex-column logo-font">
                 平方綠
               </span>
@@ -60,14 +59,14 @@
         <router-link to="/favorite" custom v-slot="{ navigate }">
           <button @click="navigate" role="link" class="btn">
             <span
-              ><img src="../../assets/images/icons/favorite_border_black.svg" alt="myFavorite"
+              ><img src="@/assets/images/icons/favorite_border_black.svg" alt="myFavorite"
             /></span>
           </button>
         </router-link>
         <router-link to="/cart" custom v-slot="{ navigate }">
           <button @click="navigate" role="link" class="btn">
             <span
-              ><img src="../../assets/images/icons/shopping_cart_black.svg" alt="cart"
+              ><img src="@/assets/images/icons/shopping_cart_black.svg" alt="cart"
             /></span>
           </button>
         </router-link>

@@ -20,8 +20,7 @@
                   <img
                     :src="cart.product.imageUrl"
                     :alt="cart.product.title"
-                    class="object-fit-cover d-none d-md-block me-3"
-                    style="width: 100px; height: 50px"
+                    class="object-fit-cover table-img-sm d-none d-md-block me-3"
                   />
                   <p class="mb-0">{{ cart.product.title }}</p>
                 </div>
@@ -122,7 +121,7 @@
 </template>
 
 <script>
-import SwalFire from '../SwalFire.vue';
+import SwalFire from '../../SwalFire.vue';
 
 export default {
   data() {

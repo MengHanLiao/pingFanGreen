@@ -100,7 +100,7 @@
   </div>
 </template>
 <script>
-import modalMixin from '../../methods/modalControl';
+import modalMixin from '@/methods/modalControl';
 
 export default {
   props: {

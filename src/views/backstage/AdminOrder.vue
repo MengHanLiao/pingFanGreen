@@ -84,9 +84,9 @@
 </template>
 
 <script>
-import PaginationComponent from '../../components/PaginationComponent.vue';
-import OrderModal from '../../components/backstage/OrderModal.vue';
-import DeleteConfirm from '../../components/backstage/DeleteConfirm.vue';
+import PaginationComponent from '@/components/PaginationComponent.vue';
+import OrderModal from '@/components/backstage/OrderModal.vue';
+import DeleteConfirm from '@/components/backstage/DeleteConfirm.vue';
 
 export default {
   data() {

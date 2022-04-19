@@ -32,7 +32,7 @@
                 class="form-control"
                 :class="{ 'is-invalid': errors['customName'] }"
                 rules="required"
-                v-model="customForm.email"
+                v-model="customForm.name"
               >
               </v-field>
               <error-message
@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import modalControl from '../../methods/modalControl';
+import modalControl from '@/methods/modalControl';
 
 export default {
   data() {

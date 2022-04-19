@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import DashBoardNavbar from '../../components/backstage/DashBoardNavbar.vue';
+import DashBoardNavbar from '@/components/backstage/DashBoardNavbar.vue';
 
 export default {
   data() {

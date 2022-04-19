@@ -54,12 +54,14 @@
 </template>
 
 <script>
+import SwalFire from '@/components/SwalFire.vue';
+
 export default {
   methods: {
+    mixins: [SwalFire],
     logout() {
       this.$http.post(`${process.env.VUE_APP_API_BASEURL}/logout`).then(() => {
-        // eslint-disable-next-line no-alert
-        alert('登出成功');
+        this.successFire('登出成功');
         this.$router.push('/');
       }).catch((err) => {
         console.dir(err);

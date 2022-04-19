@@ -4,9 +4,8 @@
     <div class="row justify-content-center">
       <template v-if="favorite.length === 0">
         <img
-          class="object-fit-cover mb-7"
-          style="height: 400px"
-          src="../../assets/images/oneHandPot.jpg"
+          class="object-fit-cover img-h-lg mb-7"
+          src="@/assets/images/oneHandPot.jpg"
           alt="banner"
         />
         <div class="col-md-4">
@@ -20,7 +19,7 @@
       </template>
       <template v-else>
         <div class="col-md-8">
-          <div class="row gy-4">
+          <div class="row gy-5">
             <div class="col-md-6" v-for="product in products" :key="product.id">
               <div
                 class="card"
@@ -30,9 +29,8 @@
               >
                 <router-link class="overlay" :to="`/product/${product.id}`">
                   <img
-                    class="overlay-img object-fit-cover"
+                    class="overlay-img object-fit-cover img-h-md"
                     :src="product.imageUrl"
-                    style="height: 200px"
                     alt="series1"
                   />
                   <button
@@ -57,11 +55,11 @@
                     <button class="btn" type="button"
                       @click="toggleFavorite(product.id)">
                       <img v-if="favorite.includes(product.id)"
-                        src="../../assets/images/icons/favorite_black.svg"
+                        src="@/assets/images/icons/favorite_black.svg"
                         alt="myFavorite"
                       />
                       <img v-else
-                        src="../../assets/images/icons/favorite_border_black.svg"
+                        src="@/assets/images/icons/favorite_border_black.svg"
                         alt="myFavorite"
                       />
                     </button>
@@ -78,7 +76,7 @@
                       ></div>
                       <img
                         :class="{ 'd-none': product.id === loadItem }"
-                        src="../../assets/images/icons/shopping_cart_black.svg"
+                        src="@/assets/images/icons/shopping_cart_black.svg"
                         alt="cart"
                       />
                     </button>
@@ -94,8 +92,8 @@
 </template>
 
 <script>
-import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
-import AddToCart from '../../methods/ProductMixin/AddToCart';
+import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
+import AddToCart from '@/methods/ProductMixin/AddToCart';
 
 export default {
   data() {

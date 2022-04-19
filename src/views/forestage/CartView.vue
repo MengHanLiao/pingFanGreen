@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import StepOne from '../../components/forestage/CheckoutStep/StepOne.vue';
-import StepTwo from '../../components/forestage/CheckoutStep/StepTwo.vue';
-import StepThree from '../../components/forestage/CheckoutStep/StepThree.vue';
+import StepOne from '@/components/forestage/CheckoutStep/StepOne.vue';
+import StepTwo from '@/components/forestage/CheckoutStep/StepTwo.vue';
+import StepThree from '@/components/forestage/CheckoutStep/StepThree.vue';
 
 export default {
   data() {

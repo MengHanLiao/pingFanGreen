@@ -7,9 +7,8 @@
       <p class="mb-7">請重新確認搜尋的項目或是回到首頁</p>
       <router-link to="/" class="btn btn-outline-dark mb-9">回到首頁</router-link>
       <img
-        class="object-fit-cover mb-7"
-        style="height: 300px"
-        src="../assets/images/mutiple404.jpg"
+        class="object-fit-cover img-h-md mb-7"
+        src="@/assets/images/mutiple404.jpg"
         alt="banner"
       />
     </div>
@@ -18,8 +17,8 @@
 </template>
 
 <script>
-import FrontNavbar from '../components/forestage/FrontNavbar.vue';
-import FrontFooter from '../components/forestage/FrontFooter.vue';
+import FrontNavbar from '@/components/forestage/FrontNavbar.vue';
+import FrontFooter from '@/components/forestage/FrontFooter.vue';
 
 export default {
   components: {

@@ -29,7 +29,7 @@
         <template v-slot:container-end>
           <div class="swipper-hint d-flex flex-column align-items-center px-3 py-2">
             <p class="text-black fw-bold mb-0">scroll</p>
-            <img class="bounce" src="../../assets/images/icons/swipe_down_black.svg" alt=""/>
+            <img class="bounce" src="@/assets/images/icons/swipe_down_black.svg" alt=""/>
           </div>
         </template>
       </swiper>
@@ -46,11 +46,11 @@
             也推出一系列的養育心得文章，歡迎大家聯絡交流。</p>
             <div class="mt-5 mb-2 mb-lg-12">
               <button @click="openContactModal"
-                class="btn btn-green-100" type="button">聯絡我們</button>
-              <a href="#" class="p-3"><img src="../../assets/images/icons/facebook.png"
-                style="width: 2rem" alt="fb"></a>
-              <a href="#" class="p-3"><img src="../../assets/images/icons/instagram.png"
-                style="width: 2rem" alt="ig"></a>
+                class="btn btn-green-100 me-3" type="button">聯絡我們</button>
+              <a href="#" class="p-3">
+                <img src="@/assets/images/icons/facebook.png" class="icon-w-sm" alt="fb"></a>
+              <a href="#" class="p-3">
+                <img src="@/assets/images/icons/instagram.png" class="icon-w-sm" alt="ig"></a>
             </div>
           </div>
           <div class="col-lg-6 align-self-end">
@@ -66,9 +66,8 @@
           <div class="row gy-4">
             <div class="col-md-4" v-for="category in categories" :key="category.seriesName">
               <router-link class="overlay" :to="`/products/${category.seriesName}`">
-                <img class="overlay-img object-fit-cover"
-                  :src="require(`../../assets/images/${category.imgName}.jpg`)"
-                  style="height: 300px" alt="series1">
+                <img class="overlay-img object-fit-cover img-h-md"
+                  :src="require(`@/assets/images/${category.imgName}.jpg`)" alt="series1">
                 <p class="overlay-content text-white fs-4">{{ category.seriesName }}</p>
               </router-link>
             </div>
@@ -80,8 +79,8 @@
       <div class="container pt-8 pb-12">
         <div class="row align-items-center">
           <div class="col-4 offset-md-1">
-            <img src="../../assets/images/customRing.jpg" alt="custom"
-              class="object-fit-cover" style="height: 500px">
+            <img src="@/assets/images/customRing.jpg" alt="custom"
+              class="object-fit-cover img-h-xl">
           </div>
           <div class="col-8 col-md-4 offset-md-1">
             <h2 class="text-primary mb-5 mb-md-6">客製化禮品</h2>
@@ -108,25 +107,17 @@
               <div class="card h-100">
                 <div class="row row-cols-2 row-cols-lg-1">
                   <div class="col">
-                    <img :src="require(`../../assets/images/${recommand.pictureName}.jpg`)"
+                    <img :src="require(`@/assets/images/${recommand.pictureName}.jpg`)"
                       alt="randomCustom"
-                      class="card-img-top object-fit-cover" style="height: 200px">
+                      class="card-img-top object-fit-cover img-h-sm">
                   </div>
                   <div class="col">
                     <div class="card-body d-flex flex-column justify-content-between">
                       <div>
                         <h5 class="card-title">{{ recommand.name }}</h5>
                         <div class="mb-3">
-                          <img src="../../assets/images/icons/star_black.svg"
-                            style="width: 24px" alt="rate">
-                          <img src="../../assets/images/icons/star_black.svg"
-                            style="width: 24px" alt="rate">
-                          <img src="../../assets/images/icons/star_black.svg"
-                            style="width: 24px" alt="rate">
-                          <img src="../../assets/images/icons/star_black.svg"
-                            style="width: 24px" alt="rate">
-                          <img src="../../assets/images/icons/star_black.svg"
-                            style="width: 24px" alt="rate">
+                          <img src="@/assets/images/icons/star_black.svg" class="icon-w-sm"
+                            v-for="i in 5" :key="i+'startnum'" alt="rate">
                         </div>
                         <p>{{ recommand.comment }}</p>
                       </div>
@@ -147,9 +138,7 @@
 <script>
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import contactModal from '../../components/forestage/ContactModal.vue';
-// eslint-disable-next-line import/no-relative-packages
-import '../../../node_modules/swiper/swiper.scss';
+import contactModal from '@/components/forestage/ContactModal.vue';
 
 export default {
   data() {

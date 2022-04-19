@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import modalControl from '../../methods/modalControl';
+import modalControl from '@/methods/modalControl';
 
 export default {
   props: ['delete-item'],

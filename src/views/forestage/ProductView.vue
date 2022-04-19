@@ -24,7 +24,7 @@
               />
               <button class="btn btn-outline-green-500" type="button" @click="searchProduct">
                 <img
-                  src="../../assets/images/icons/search_black.svg" alt="find"
+                  src="@/assets/images/icons/search_black.svg" alt="find"
                 />
               </button>
             </div>
@@ -40,9 +40,8 @@
               >
                 <router-link class="overlay" :to="`/product/${product.id}`">
                   <img
-                    class="overlay-img object-fit-cover"
+                    class="overlay-img object-fit-cover img-h-sm"
                     :src="product.imageUrl"
-                    style="height: 200px"
                     alt="series1"
                   />
                   <button
@@ -67,11 +66,11 @@
                     <button class="btn" type="button"
                       @click="toggleFavorite(product.id)">
                       <img v-if="favorite.includes(product.id)"
-                        src="../../assets/images/icons/favorite_black.svg"
+                        src="@/assets/images/icons/favorite_black.svg"
                         alt="myFavorite"
                       />
                       <img v-else
-                        src="../../assets/images/icons/favorite_border_black.svg"
+                        src="@/assets/images/icons/favorite_border_black.svg"
                         alt="myFavorite"
                       />
                     </button>
@@ -88,7 +87,7 @@
                       ></div>
                       <img
                         :class="{ 'd-none': product.id === loadItem }"
-                        src="../../assets/images/icons/shopping_cart_black.svg"
+                        src="@/assets/images/icons/shopping_cart_black.svg"
                         alt="cart"
                       />
                     </button>
@@ -107,12 +106,12 @@
 </template>
 
 <script>
-import Breadcrumb from '../../components/forestage/BreadcrumbComponent.vue';
-import ProductSidenav from '../../components/forestage/ProductSidenav.vue';
-import ToggleFavorite from '../../methods/ProductMixin/ToggleFavorite';
-import AddToCart from '../../methods/ProductMixin/AddToCart';
-import PaginationComponent from '../../components/PaginationComponent.vue';
-import SwalFire from '../../components/forestage/SwalFire.vue';
+import Breadcrumb from '@/components/forestage/BreadcrumbComponent.vue';
+import ProductSidenav from '@/components/forestage/ProductSidenav.vue';
+import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
+import AddToCart from '@/methods/ProductMixin/AddToCart';
+import PaginationComponent from '@/components/PaginationComponent.vue';
+import SwalFire from '@/components/SwalFire.vue';
 
 export default {
   data() {

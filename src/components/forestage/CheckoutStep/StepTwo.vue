@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import SwalFire from '../SwalFire.vue';
+import SwalFire from '../../SwalFire.vue';
 
 export default {
   data() {

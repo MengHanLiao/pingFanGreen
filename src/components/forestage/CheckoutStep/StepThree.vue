@@ -5,9 +5,8 @@
     <div class="d-flex align-items-center mb-7">
       <div class="d-none d-md-block w-50 me-3">
         <img
-          class="object-fit-cover"
-          style="height: 300px"
-          src="../../../assets/images/lastStep.jpg"
+          class="object-fit-cover img-h-md"
+          src="@/assets/images/lastStep.jpg"
           alt="circlePlants"
         />
       </div>
@@ -40,8 +39,7 @@
                 <img
                   :src="cart.product.imageUrl"
                   :alt="cart.product.title"
-                  class="object-fit-cover d-none d-md-block me-3"
-                  style="width: 100px; height: 50px"
+                  class="object-fit-cover table-img-sm d-none d-md-block me-3"
                 />
                 <p class="mb-0">{{ cart.product.title }}</p>
               </div>

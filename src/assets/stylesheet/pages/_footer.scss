@@ -1,0 +1,12 @@
+.github{
+  background-image: url('@/assets/images/icons/github.png');
+}
+.codepen{
+  background-image: url('@/assets/images/icons/codepen.png');
+}
+.github, .codepen{
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -133,7 +133,7 @@
 <script>
 // eslint-disable-next-line import/no-extraneous-dependencies
 import CustomCkeditor from '@ckeditor/ckeditor5-custom-build/build/ckeditor';
-import modalControl from '../../methods/modalControl';
+import modalControl from '@/methods/modalControl';
 
 export default {
   // props: {

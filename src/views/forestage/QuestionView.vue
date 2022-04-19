@@ -2,9 +2,8 @@
   <div class="container pt-7 pt-md-8 pb-9 pb-md-12">
     <h2 class="text-center mb-7 mb-md-7">常見問題</h2>
     <img
-      class="object-fit-cover mb-7"
-      style="height: 400px"
-      src="../../assets/images/package.jpg"
+      class="object-fit-cover img-h-lg mb-7"
+      src="@/assets/images/package.jpg"
       alt="banner"
     />
     <div class="row justify-content-center">

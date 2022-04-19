@@ -4,10 +4,9 @@
       <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
         <router-link to="/" class="d-flex align-items-center mb-2">
           <img
-            class="me-1"
-            src="../../assets/images/icons/logo.png"
+            class="icon-w-md me-1"
+            src="@/assets/images/icons/logo.png"
             alt="logo.png"
-            style="width: 36px"
           />
           <span class="fs-2 d-flex flex-column logo-font">平方綠</span>
         </router-link>
@@ -30,20 +29,3 @@
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.github{
-  width: 32px;
-  height: 32px;
-  background-image: url('../../assets/images/icons/github.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.codepen{
-  width: 32px;
-  height: 32px;
-  background-image: url('../../assets/images/icons/codepen.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>
