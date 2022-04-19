@@ -19,7 +19,7 @@
                   <h3 class="display-5 mt-10 mb-3">{{ event.title }}</h3>
                   <p class="fs-3 text-gray">{{ event.subtitle }}</p>
                   <router-link :to="event.btn.link"
-                    class="btn btn-outline-dark w-50 border-2">
+                    class="btn btn-green-500 text-white w-50 border-2">
                     {{ event.btn.text }}</router-link>
                 </div>
               </div>
