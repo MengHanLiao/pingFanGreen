@@ -121,6 +121,7 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter';
 import SwalFire from '../../SwalFire.vue';
 
 export default {
@@ -176,9 +177,9 @@ export default {
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${cartId}`,
         )
         .then((res) => {
-          console.log(res);
           this.getCart();
           this.successFire(res.data.message);
+          emitter.emit('change-cart');
         })
         .catch((err) => {
           this.failFire(err.response.data.message);

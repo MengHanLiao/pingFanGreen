@@ -1,3 +1,5 @@
+import emitter from '../emitter';
+
 export default {
   data() {
     return {
@@ -19,6 +21,7 @@ export default {
         )
         .then((res) => {
           this.loadItem = '';
+          emitter.emit('change-cart');
           this.successFire(res.data.message);
         })
         .catch((err) => {

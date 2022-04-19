@@ -28,7 +28,7 @@
         </swiper-slide>
         <template v-slot:container-end>
           <div class="swipper-hint d-flex flex-column align-items-center px-3 py-2">
-            <p class="text-black fw-bold mb-0">scroll</p>
+            <p class="text-primary fw-bold mb-0">scroll</p>
             <img class="bounce" src="@/assets/images/icons/swipe_down_black.svg" alt=""/>
           </div>
         </template>

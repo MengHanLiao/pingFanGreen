@@ -1,3 +1,5 @@
+import emitter from '../emitter';
+
 export default {
   data() {
     return {
@@ -14,6 +16,7 @@ export default {
         this.favorite.splice(favoriteIndex, 1);
         this.warningFire('取消收藏');
       }
+      emitter.emit('emit-favorite', this.favorite.length);
     },
   },
   watch: {

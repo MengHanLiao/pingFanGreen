@@ -57,14 +57,24 @@
       </div>
       <div>
         <router-link to="/favorite" custom v-slot="{ navigate }">
-          <button @click="navigate" role="link" class="btn">
+          <button @click="navigate" role="link" class="btn position-relative me-1">
+            <span class="position-absolute top-20 start-80 translate-middle px-2
+              bg-green-500 border border-light rounded-pill text-white text-sm">
+              {{ favoriteNum }}
+              <span class="visually-hidden">new favorite</span>
+            </span>
             <span
               ><img src="@/assets/images/icons/favorite_border_black.svg" alt="myFavorite"
             /></span>
           </button>
         </router-link>
         <router-link to="/cart" custom v-slot="{ navigate }">
-          <button @click="navigate" role="link" class="btn">
+          <button @click="navigate" role="link" class="btn position-relative">
+            <span class="position-absolute top-20 start-80 translate-middle px-2
+              bg-green-500 border border-light rounded-pill text-white text-sm">
+              {{ cartNum }}
+              <span class="visually-hidden">new item</span>
+            </span>
             <span
               ><img src="@/assets/images/icons/shopping_cart_black.svg" alt="cart"
             /></span>
@@ -86,18 +96,23 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter';
 import Offcanvas from 'bootstrap/js/dist/offcanvas';
+import SwalFire from '@/components/SwalFire.vue';
 import ProductSidenav from './ProductSidenav.vue';
 
 export default {
   data() {
     return {
+      favoriteNum: JSON.parse(localStorage.getItem('favorite')).length,
+      cartNum: 0,
       bsOffcanvas: '',
     };
   },
   components: {
     ProductSidenav,
   },
+  mixins: [SwalFire],
   methods: {
     showOffcanvas() {
       this.bsOffcanvas.show();
@@ -105,9 +120,23 @@ export default {
     hideOffcanvas() {
       this.bsOffcanvas.hide();
     },
+    getCart() {
+      this.$http.get(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart`).then((res) => {
+        this.cartNum = res.data.data.carts.length;
+      }).catch((err) => {
+        this.failFire(err.response.data.message);
+      });
+    },
   },
   mounted() {
+    this.getCart();
     this.bsOffcanvas = new Offcanvas(this.$refs.navOffcanvas);
+    emitter.on('emit-favorite', (num) => {
+      this.favoriteNum = num;
+    });
+    emitter.on('change-cart', () => {
+      this.getCart();
+    });
   },
 };
 </script>
