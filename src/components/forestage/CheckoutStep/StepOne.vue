@@ -55,7 +55,7 @@
                 <button
                   class="btn btn-light text-primary"
                   type="button"
-                  @click="deleteCart(cart.id)"
+                  @click="deleteCart(cart.product.title,cart.id)"
                 >
                   刪除
                 </button>
@@ -79,7 +79,7 @@
         <label v-else class="mb-3">
           <span class="form-label me-3">折扣: </span>
           <input
-            class="form-control-sm"
+            class="form-control-sm mb-2"
             type="text"
             placeholder="輸入 ILoveGreen 打九折"
             v-model="coupoun"
@@ -99,7 +99,7 @@
           >
         </div>
       </div>
-      <div class="text-center text-md-end">
+      <div class="text-end">
       <button
         class="btn btn-lg btn-green-500 text-white px-10"
         type="button"
@@ -171,19 +171,29 @@ export default {
           this.failFire(err.response.data.message);
         });
     },
-    deleteCart(cartId) {
-      this.$http
-        .delete(
-          `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${cartId}`,
-        )
-        .then((res) => {
-          this.getCart();
-          this.successFire(res.data.message);
-          emitter.emit('change-cart');
-        })
-        .catch((err) => {
-          this.failFire(err.response.data.message);
-        });
+    deleteCart(title, cartId) {
+      console.log(cartId);
+      this.$swal({
+        icon: 'warning',
+        title: `刪除商品： ${title} ？`,
+        showCancelButton: true,
+        timer: 30000,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$http
+            .delete(
+              `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/cart/${cartId}`,
+            )
+            .then((res) => {
+              this.getCart();
+              this.successFire(res.data.message);
+              emitter.emit('change-cart');
+            })
+            .catch((err) => {
+              this.failFire(err.response.data.message);
+            });
+        }
+      });
     },
     useCoupon() {
       const couponData = {

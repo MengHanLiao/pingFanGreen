@@ -30,7 +30,6 @@ app.use(VueLoading, {
 });
 app.use(VueSweetalert2, {
   reverseButtons: true,
-  focusConfirm: false,
   confirmButtonText: '確認',
   cancelButtonText: '取消',
   showCloseButton: true,
