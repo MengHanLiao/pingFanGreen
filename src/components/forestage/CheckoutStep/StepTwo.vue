@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-center mb-7 mb-md-7">填寫購買資訊</h2>
+    <h2 class="text-primary text-center mb-7 mb-md-7">填寫購買資訊</h2>
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4">
         <v-form ref="form" v-slot="{ errors }" @submit="submitOrder">

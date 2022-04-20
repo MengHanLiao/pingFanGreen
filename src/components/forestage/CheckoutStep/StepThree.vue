@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-primary text-center mb-7 mb-md-7">確認訂單</h2>
+    <h2 class="text-primary text-primary text-center mb-7 mb-md-7">確認訂單</h2>
     <h4 class="text-center">購買人資料</h4>
     <div class="d-flex align-items-center mb-7">
       <div class="d-none d-md-block w-50 me-3">

@@ -14,8 +14,8 @@
       height: 3rem;
       line-height: 3rem;
       text-align: center;
-      margin: 0 auto 8px;
-      border: 2px solid $gray-500;
+      margin: 0 auto 4px;
+      border: 3px solid $gray-500;
       background-color: $white;
     }
     &::after{
@@ -32,21 +32,21 @@
       content: none;
     }
     &.active::before{
-      color: $green-500;
-      border-color: $green-500;
+      color: $gray-700;
+      border-color: $gray-700;
     }
     &.active + &::after, &.completed + &::after {
-      background-color: $green-500;
+      background-color: $gray-700;
     }
     &.completed::before {
-      background-color: $green-500;
-      border-color: $green-500;
+      background-color: $gray-700;
+      border-color: $gray-700;
       color: $white;
     }
     
   }
   &-item.active &-name, 
   &-item.completed &-name {
-    color: $primary;
+    color: $black;
   }
 }

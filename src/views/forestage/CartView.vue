@@ -17,14 +17,17 @@
       <StepThree v-else-if="currentStep === 2" :order-id="orderId"
         @emit-next="goNext"></StepThree>
       <template v-else-if="currentStep === 3">
-        <h2 class="text-center mb-7 mb-md-7">完成訂購</h2>
+        <h2 class="text-primary text-center mb-5 mb-md-7 ">完成訂購</h2>
         <p class="text-center">
           感謝您本次的購買<br>
           出貨時會寄送確認信件<br>
           請您留意<br>
         </p>
+        <p class="text-center mb-5 mb-md-7">
+          訂單編號：<br><span class="fs-5 text-green-500">{{ orderId }}</span>
+        </p>
         <div class="d-flex justify-content-center">
-          <router-link to="/" class="btn btn-lg btn-outline-dark">返回首頁</router-link>
+          <router-link to="/" class="btn btn-green-500 text-white">返回首頁</router-link>
         </div>
       </template>
     </keep-alive>

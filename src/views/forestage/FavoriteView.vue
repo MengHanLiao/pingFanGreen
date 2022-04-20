@@ -111,6 +111,7 @@ export default {
   mixins: [ToggleFavorite, AddToCart, SwalFire],
   methods: {
     getProduct() {
+      const loader = this.$loading.show();
       this.favorite.forEach((id) => {
         this.$http
           .get(
@@ -118,6 +119,9 @@ export default {
           )
           .then((res) => {
             this.products.push(res.data.product);
+            if (this.favorite.length === this.products.length) {
+              loader.hide();
+            }
           })
           .catch((err) => {
             this.failFire(err.response.data.message);
