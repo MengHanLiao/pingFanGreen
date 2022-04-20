@@ -12,7 +12,7 @@
               id="email"
               name="email"
               type="email"
-              class="form-control"
+              class="form-control bg-whites"
               :class="{ 'is-invalid': errors['email'] }"
               placeholder="請輸入 Email"
               rules="required|email"
@@ -75,17 +75,29 @@
             <label for="payMethod" class="form-label">
               付款方式<span class="text-sm text-primary ms-2">必填</span>
             </label>
-            <select class="form-select" name="payMethod" id="payMethod">
+            <v-field
+              id="payMethod"
+              name="付款方式"
+              class="form-select"
+              :class="{ 'is-invalid': errors['地址'], 'border-green-500': userForm.payMethod !== '' }"
+              placeholder="請輸入地址"
+              rules="required"
+              v-model="userForm.payMethod"
+              as="select"
+            >
+              <option value="" disabled="{disabled: true}">請選擇付款方式</option>
               <option value="銀行轉帳">銀行轉帳</option>
               <option value="信用卡">信用卡</option>
               <option value="行動支付">行動支付</option>
-            </select>
+            </v-field>
+            <error-message name="付款方式" class="invalid-feedback"></error-message>
           </div>
           <div class="mb-4">
             <label for="message" class="form-label">留言</label>
             <textarea
               id="message"
               class="form-control"
+              :class="{'border-green-500': userForm.message !== ''}"
               cols="30"
               rows="10"
               v-model="userForm.message"
@@ -120,6 +132,7 @@ export default {
           address: '',
         },
         message: '',
+        payMethod: '',
       },
     };
   },

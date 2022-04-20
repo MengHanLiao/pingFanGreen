@@ -1,6 +1,6 @@
 <template>
   <div id="step_CheckCart">
-    <h2 class="text-center mb-7 mb-md-7">購物車</h2>
+    <h2 class="text-primary text-center mb-7 mb-md-7">購物車</h2>
     <template v-if="carts.length !== 0">
       <div class="table-responsive">
         <table class="table align-middle">

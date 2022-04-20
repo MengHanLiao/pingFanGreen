@@ -66,13 +66,14 @@
               <v-field
                 id="customMessage"
                 name="customMessage"
+                v-model="customForm.message"
                 class="form-control"
-                :class="{ 'is-invalid': errors['customMessage'] }"
+                :class="{ 'is-invalid': errors['customMessage'],
+                  'border-green-500': customForm.message !== '' }"
                 cols="30"
                 rows="5"
                 as="textarea"
                 rules="required"
-                v-model="customForm.message"
               ></v-field>
               <error-message
                 name="customMessage"

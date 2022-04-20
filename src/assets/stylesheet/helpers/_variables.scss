@@ -76,6 +76,7 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 $green-500: #3DB25A;
+$green-50: #E7F6EA;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -83,7 +84,7 @@ $theme-colors: (
   "primary":    $primary,
   "green-500": $green-500,
   "green-100": #C5E7CC,
-  "green-50": #E7F6EA,
+  "green-50": $green-50,
   "secondary":  $secondary,
   "gray": $gray-700,
   "success":    $success,
