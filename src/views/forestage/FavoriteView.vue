@@ -55,7 +55,7 @@
                   </p>
                   <div class="d-flex justify-content-end">
                     <button class="btn" type="button"
-                      @click.stop="toggleFavorite(product.id)">
+                      @click.stop="deleteFavorite(product.id)">
                       <img v-if="favorite.includes(product.id)"
                         src="@/assets/images/icons/favorite_black.svg"
                         alt="myFavorite"
@@ -97,6 +97,7 @@
 import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
 import AddToCart from '@/methods/ProductMixin/AddToCart';
 import SwalFire from '@/components/SwalFire.vue';
+import emitter from '@/methods/emitter';
 
 export default {
   data() {
@@ -104,6 +105,7 @@ export default {
       isHover: false,
       loadItem: '',
       products: [],
+      favorite: JSON.parse(localStorage.getItem('favorite')) || [],
     };
   },
   mixins: [ToggleFavorite, AddToCart, SwalFire],
@@ -122,12 +124,20 @@ export default {
           });
       });
     },
+    deleteFavorite(id) {
+      this.toggleFavorite(id);
+      const index = this.products.findIndex((item) => item.id === id);
+      this.products.splice(index, 1);
+    },
     goToProduct(id) {
       this.$router.push({ path: `/product/${id}` });
     },
   },
   mounted() {
     this.getProduct();
+    emitter.on('delete-favorite', (index) => {
+      this.products.splice(index, 1);
+    });
   },
 };
 </script>
