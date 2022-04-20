@@ -34,11 +34,13 @@
             <div class="col" v-for="product in products" :key="product.id">
               <div
                 class="card"
-                :class="{ 'card-hover': isHover }"
+                :class="{ 'card-hover': isHover, 'cursor-pointer': isHover }"
                 @mouseover="isHover = true"
                 @focus="isHover = true"
+                @click.prevent="goToProduct(product.id)"
+                @keydown="goToProduct(product.id)"
               >
-                <router-link class="overlay" :to="`/product/${product.id}`">
+                <div class="overlay" :class="{hover: isHover}">
                   <img
                     class="overlay-img object-fit-cover img-h-sm"
                     :src="product.imageUrl"
@@ -50,7 +52,7 @@
                   >
                     更多資訊
                   </button>
-                </router-link>
+                </div>
                 <div class="card-body">
                   <h5 class="text-truncate">{{ product.title }}</h5>
                   <p class="text-primary fs-5 mb-0">
@@ -64,7 +66,7 @@
                   </p>
                   <div class="d-flex justify-content-end">
                     <button class="btn" type="button"
-                      @click="toggleFavorite(product.id)">
+                      @click.stop="toggleFavorite(product.id)">
                       <img v-if="favorite.includes(product.id)"
                         src="@/assets/images/icons/favorite_black.svg"
                         alt="myFavorite"
@@ -78,7 +80,7 @@
                       class="btn"
                       :class="{ disabled: product.id === loadItem }"
                       type="button"
-                      @click="addToCart(product.id)"
+                      @click.stop="addToCart(product.id)"
                     >
                       <div
                         class="spinner-grow"
@@ -164,10 +166,12 @@ export default {
           console.dir(err);
         });
     },
+    goToProduct(id) {
+      this.$router.push({ path: `/product/${id}` });
+    },
   },
   watch: {
     $route() {
-      console.log(this.$route);
       this.getData(1, this.$route.params.category);
     },
   },

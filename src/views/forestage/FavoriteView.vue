@@ -23,11 +23,13 @@
             <div class="col-md-6" v-for="product in products" :key="product.id">
               <div
                 class="card"
-                :class="{ 'card-hover': isHover }"
+                :class="{ 'card-hover': isHover, 'cursor-pointer': isHover }"
                 @mouseover="isHover = true"
                 @focus="isHover = true"
+                @click.prevent="goToProduct(product.id)"
+                @keydown="goToProduct(product.id)"
               >
-                <router-link class="overlay" :to="`/product/${product.id}`">
+                <div class="overlay">
                   <img
                     class="overlay-img object-fit-cover img-h-md"
                     :src="product.imageUrl"
@@ -39,7 +41,7 @@
                   >
                     更多資訊
                   </button>
-                </router-link>
+                </div>
                 <div class="card-body">
                   <h5 class="text-truncate">{{ product.title }}</h5>
                   <p class="text-primary fs-5 mb-0">
@@ -53,7 +55,7 @@
                   </p>
                   <div class="d-flex justify-content-end">
                     <button class="btn" type="button"
-                      @click="toggleFavorite(product.id)">
+                      @click.stop="toggleFavorite(product.id)">
                       <img v-if="favorite.includes(product.id)"
                         src="@/assets/images/icons/favorite_black.svg"
                         alt="myFavorite"
@@ -67,7 +69,7 @@
                       class="btn"
                       :class="{ disabled: product.id === loadItem }"
                       type="button"
-                      @click="addToCart(product.id)"
+                      @click.stop="addToCart(product.id)"
                     >
                       <div
                         class="spinner-grow"
@@ -94,6 +96,7 @@
 <script>
 import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
 import AddToCart from '@/methods/ProductMixin/AddToCart';
+import SwalFire from '@/components/SwalFire.vue';
 
 export default {
   data() {
@@ -103,7 +106,7 @@ export default {
       products: [],
     };
   },
-  mixins: [ToggleFavorite, AddToCart],
+  mixins: [ToggleFavorite, AddToCart, SwalFire],
   methods: {
     getProduct() {
       this.favorite.forEach((id) => {
@@ -115,9 +118,12 @@ export default {
             this.products.push(res.data.product);
           })
           .catch((err) => {
-            console.dir(err);
+            this.failFire(err.response.data.message);
           });
       });
+    },
+    goToProduct(id) {
+      this.$router.push({ path: `/product/${id}` });
     },
   },
   mounted() {
