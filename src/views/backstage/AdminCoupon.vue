@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <div class="text-end mt-4">
+  <div class="container my-5">
+    <div class="d-flex justify-content-between mb-3">
+      <h2>優惠券列表</h2>
       <button
         class="btn btn-primary"
         type="button"
@@ -64,6 +65,7 @@
 <script>
 import CouponModal from '@/components/backstage/CouponModal.vue';
 import deleteConfirm from '@/components/backstage/DeleteConfirm.vue';
+import SwalFire from '@/components/SwalFire.vue';
 
 export default {
   data() {
@@ -75,10 +77,10 @@ export default {
         percent: 100,
         code: '',
       },
-      isLoading: false,
       isNew: false,
     };
   },
+  mixins: [SwalFire],
   components: { CouponModal, deleteConfirm },
   props: {
     config: Object,
@@ -89,6 +91,7 @@ export default {
       if (this.isNew) {
         this.tempCoupon = {
           due_date: new Date().getTime() / 1000,
+          is_enabled: 0,
         };
       } else {
         this.tempCoupon = { ...item };
@@ -101,7 +104,7 @@ export default {
       delComponent.openModal();
     },
     getCoupons() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       this.$http
         .get(
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/coupons`,
@@ -109,15 +112,15 @@ export default {
         )
         .then((res) => {
           this.coupons = res.data.coupons;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch((err) => {
-          this.isLoading = false;
-          console.log(err);
+          loader.hide();
+          this.failFire(err.response.data.message);
         });
     },
     updateCoupon(tempCoupon) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       let url = `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/coupon`;
       let httpMethos = 'post';
       let data = tempCoupon;
@@ -127,31 +130,33 @@ export default {
         data = this.tempCoupon;
       }
       this.$http[httpMethos](url, { data })
-        .then(() => {
-          this.isLoading = false;
+        .then((res) => {
+          loader.hide();
           this.getCoupons();
           this.$refs.couponModal.closeModal();
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          this.isLoading = false;
-          console.dir(err);
+          loader.hide();
+          this.failFire(err.response.data.message);
         });
     },
     deleteCoupon() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       this.$http
         .delete(
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`,
         )
-        .then(() => {
-          this.isLoading = false;
+        .then((res) => {
+          loader.hide();
           const delComponent = this.$refs.deleteModal;
           delComponent.closeModal();
           this.getCoupons();
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          this.isLoading = false;
-          console.dir(err);
+          loader.hide();
+          this.failFire(err.response.data.message);
         });
     },
   },

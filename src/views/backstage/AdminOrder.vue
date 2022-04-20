@@ -87,6 +87,7 @@
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import OrderModal from '@/components/backstage/OrderModal.vue';
 import DeleteConfirm from '@/components/backstage/DeleteConfirm.vue';
+import SwalFire from '@/components/SwalFire.vue';
 
 export default {
   data() {
@@ -97,6 +98,7 @@ export default {
       isDeleteAll: false,
     };
   },
+  mixins: [SwalFire],
   components: {
     PaginationComponent,
     OrderModal,
@@ -115,7 +117,7 @@ export default {
           loader.hide();
         })
         .catch((err) => {
-          console.log(err);
+          this.failFire(err.response.data.message);
           loader.hide();
         });
     },
@@ -127,10 +129,10 @@ export default {
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`,
           { data: this.tempOrder },
         ).then((res) => {
-          console.log(res);
+          this.successFire(res.data.message);
           this.getOrders();
         }).catch((err) => {
-          console.log(err);
+          this.failFire(err.response.data.message);
         });
     },
     openOrderModal(order) {
@@ -162,9 +164,9 @@ export default {
         this.getOrders();
         const deleteComponent = this.$refs.deleteModal;
         deleteComponent.closeModal();
-        console.log(res);
+        this.successFire(res.data.message);
       }).catch((err) => {
-        console.dir(err);
+        this.failFire(err.response.data.message);
       });
     },
   },

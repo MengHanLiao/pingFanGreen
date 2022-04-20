@@ -58,6 +58,7 @@
                     <input
                       v-model.number="tempProduct.origin_price"
                       type="number"
+                      min="0"
                       class="form-control"
                       id="originalPrice"
                       placeholder="請填入數字"
@@ -68,6 +69,7 @@
                     <input
                       v-model.number="tempProduct.price"
                       type="number"
+                      min="0"
                       class="form-control"
                       id="productName"
                       placeholder="請填入數字"

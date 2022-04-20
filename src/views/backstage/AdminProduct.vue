@@ -82,6 +82,7 @@
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import productModal from '@/components/backstage/ProductModal.vue';
 import deleteConfirm from '@/components/backstage/DeleteConfirm.vue';
+import SwalFire from '@/components/SwalFire.vue';
 
 export default {
   data() {
@@ -92,6 +93,7 @@ export default {
       isNew: true,
     };
   },
+  mixins: [SwalFire],
   components: {
     PaginationComponent,
     productModal,
@@ -110,7 +112,7 @@ export default {
           loader.hide();
         })
         .catch((err) => {
-          console.dir(err);
+          this.failFire(err.response.data.message);
           loader.hide();
         });
     },
@@ -135,12 +137,14 @@ export default {
       this.$http[method](url, { data: obj })
         .then((res) => {
           console.log(res);
+          this.successFire(res.data.message);
           this.getProducts();
           const controlPrdouctModal = this.$refs.productModal;
           controlPrdouctModal.closeModal();
         })
         .catch((err) => {
           console.dir(err);
+          this.failFire(err.response.data.message);
         });
     },
     openDeleteModal(product) {
@@ -153,13 +157,14 @@ export default {
         .delete(
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`,
         )
-        .then(() => {
+        .then((res) => {
           this.getProducts();
           const controlDeleteModal = this.$refs.deleteModal;
           controlDeleteModal.closeModal();
+          this.successFire(res.data.message);
         })
         .catch((err) => {
-          console.dir(err);
+          this.failFire(err.response.data.message);
         });
     },
   },

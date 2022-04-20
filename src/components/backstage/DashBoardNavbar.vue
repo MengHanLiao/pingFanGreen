@@ -57,8 +57,8 @@
 import SwalFire from '@/components/SwalFire.vue';
 
 export default {
+  mixins: [SwalFire],
   methods: {
-    mixins: [SwalFire],
     logout() {
       this.$http.post(`${process.env.VUE_APP_API_BASEURL}/logout`).then(() => {
         this.successFire('登出成功');
