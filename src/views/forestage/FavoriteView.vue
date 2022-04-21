@@ -112,21 +112,25 @@ export default {
   methods: {
     getProduct() {
       const loader = this.$loading.show();
-      this.favorite.forEach((id) => {
-        this.$http
-          .get(
-            `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/product/${id}`,
-          )
-          .then((res) => {
-            this.products.push(res.data.product);
-            if (this.favorite.length === this.products.length) {
-              loader.hide();
-            }
-          })
-          .catch((err) => {
-            this.failFire(err.response.data.message);
-          });
-      });
+      this.$http
+        .get(
+          `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/products/all`,
+        )
+        .then((res) => {
+          const allProducts = res.data.products;
+          if (this.favorite.length) {
+            allProducts.forEach((item) => {
+              const isFavorite = this.favorite.findIndex((id) => item.id === id);
+              if (isFavorite !== -1) {
+                this.products.push(item);
+              }
+            });
+          }
+          loader.hide();
+        })
+        .catch((err) => {
+          this.failFire(err.response.data.message);
+        });
     },
     deleteFavorite(id) {
       this.toggleFavorite(id);

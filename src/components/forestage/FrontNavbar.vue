@@ -57,8 +57,9 @@
       </div>
       <div>
         <router-link to="/favorite" custom v-slot="{ navigate }">
-          <button @click="navigate" role="link" class="btn position-relative me-1">
-            <span class="position-absolute top-20 start-80 translate-middle px-2
+          <button @click="navigate" role="link" class="btn position-relative me-2">
+            <span v-if="favoriteNum"
+              class="position-absolute top-20 start-80 translate-middle px-2
               bg-primary border border-light rounded-pill text-white text-sm">
               {{ favoriteNum }}
               <span class="visually-hidden">new favorite</span>
@@ -70,7 +71,8 @@
         </router-link>
         <router-link to="/cart" custom v-slot="{ navigate }">
           <button @click="navigate" role="link" class="btn position-relative">
-            <span class="position-absolute top-20 start-80 translate-middle px-2
+            <span v-if="cartNum"
+              class="position-absolute top-20 start-80 translate-middle px-2
               bg-primary border border-light rounded-pill text-white text-sm">
               {{ cartNum }}
               <span class="visually-hidden">new item</span>

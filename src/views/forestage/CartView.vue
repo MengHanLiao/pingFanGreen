@@ -27,7 +27,10 @@
           訂單編號：<br><span class="fs-5 text-green-500">{{ orderId }}</span>
         </p>
         <div class="d-flex justify-content-center">
-          <router-link to="/" class="btn btn-green-500 text-white">返回首頁</router-link>
+          <router-link to="/" custom v-slot="{ navigate }">
+            <button @click="navigate" role="link"
+              class="btn btn-lg btn-green-500 text-white">返回首頁</button>
+          </router-link>
         </div>
       </template>
     </keep-alive>
