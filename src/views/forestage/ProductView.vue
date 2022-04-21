@@ -165,6 +165,11 @@ export default {
           this.products = allProduct.filter(
             (item) => item.title.match(this.keyword) || item.category.match(this.keyword),
           );
+          console.log(this.pagination);
+          this.pagination = {
+            current_page: 1,
+            total_pages: 1,
+          };
           loader.hide();
           this.keyword = '';
         })
