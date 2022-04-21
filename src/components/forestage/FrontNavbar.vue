@@ -106,7 +106,7 @@ import ProductSidenav from './ProductSidenav.vue';
 export default {
   data() {
     return {
-      favoriteNum: JSON.parse(localStorage.getItem('favorite')).length || 0,
+      favoriteNum: 0,
       cartNum: 0,
       bsOffcanvas: '',
     };
@@ -128,6 +128,12 @@ export default {
       }).catch((err) => {
         this.failFire(err.response.data.message);
       });
+    },
+    getfavorite() {
+      const content = JSON.parse(localStorage.getItem('favorite'));
+      if (content) {
+        this.favoriteNum = content.length;
+      }
     },
   },
   mounted() {
