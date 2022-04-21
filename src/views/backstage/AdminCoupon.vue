@@ -24,7 +24,7 @@
         <tr v-for="(item, key) in coupons" :key="key">
           <td>{{ item.title }}</td>
           <td>{{ item.percent }}%</td>
-          <td>到期日</td>
+          <td>{{ dateChange(item.due_date) }}</td>
           <td>
             <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
             <span v-else class="text-muted">未啟用</span>
@@ -158,6 +158,12 @@ export default {
           loader.hide();
           this.failFire(err.response.data.message);
         });
+    },
+    dateChange(timestamp) {
+      const dateAndTime = new Date(timestamp * 1000)
+        .toISOString()
+        .split('T');
+      return dateAndTime.shift();
     },
   },
   created() {

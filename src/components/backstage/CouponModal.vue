@@ -125,7 +125,9 @@ export default {
   watch: {
     coupon() {
       this.tempCoupon = this.coupon;
-      const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
+      const dateAndTime = new Date(this.tempCoupon.due_date * 1000)
+        .toISOString()
+        .split('T');
       [this.due_date] = dateAndTime;
     },
     due_date() {

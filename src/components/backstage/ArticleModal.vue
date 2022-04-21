@@ -12,8 +12,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <span v-if="isNew">新增文章</span>
-            <span v-else>編輯文章</span>
+            {{ isNew ? "新增文章" : "編輯文章" }}
           </h5>
           <button
             type="button"
@@ -48,7 +47,7 @@
             <input
               type="date"
               class="form-control"
-              v-model="tempArticle.create_at"
+              v-model="createDate"
               id="create_date"
             />
           </div>
@@ -65,7 +64,8 @@
           <div class="mb-3">
             <label for="article_tags">標籤</label>
             <div class="row">
-              <div class="col-3" v-for="(tag,index) in tempArticle.tags" :key="index+'asdf'">
+              <div class="col-6 col-lg-4"
+                v-for="(tag,index) in tempArticle.tags" :key="index+'asdf'">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="請輸入標籤"
                     v-model="tempArticle.tags[index]">
@@ -74,7 +74,8 @@
                 </div>
               </div>
               <div class="col-3">
-                <button class="btn btn-outline-primary w-100"
+                <button class="btn btn-outline-primary w-100" type="button"
+                  v-if="!tempArticle.tags.length || tempArticle.tags[tempArticle.tags.length-1]"
                   @click="tempArticle.tags.push('')">新增</button>
               </div>
             </div>
@@ -90,18 +91,15 @@
             ></textarea>
           </div>
           <div class="mb-3">
-            {{editorData}}
             <span class="mb-1">文章內容</span>
-            <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+            <ckeditor :editor="editor" v-model="tempArticle.content"></ckeditor>
           </div>
           <div class="mb-3">
             <div class="form-check">
               <input
                 class="form-check-input"
                 type="checkbox"
-                :true-value="1"
-                :false-value="0"
-                v-model="tempArticle.is_public"
+                v-model="tempArticle.isPublic"
                 id="is_public"
               />
               <label class="form-check-label" for="is_public">
@@ -121,43 +119,75 @@
           <button
             type="button"
             class="btn btn-primary"
-            @click="$emit('update-coupon', tempCoupon)"
+            @click="updateArticle"
           >
-            {{ isNew ? "新增文章" : "更新文章" }}
+            {{ isNew ? "新增" : "更新" }}
           </button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
-// eslint-disable-next-line import/no-extraneous-dependencies
-import CustomCkeditor from '@ckeditor/ckeditor5-custom-build/build/ckeditor';
 import modalControl from '@/methods/modalControl';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
-  // props: {
-  //   coupon: {
-  //     type: Object,
-  //     default() {
-  //       return {};
-  //     },
-  //   },
-  // },
+  props: {
+    articleId: {
+      type: String,
+    },
+    isNew: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data() {
     return {
       tempArticle: {
-        tags: ['#旺季', '#吃飯', '#發呆'],
+        isPublic: false,
+        tags: [],
       },
       createDate: '',
-      isNew: false,
-      editorData: '',
-      editor: CustomCkeditor,
-      // editorConfig: {
-      //   toolbar: ['heading', 'typing', 'bold', 'italic', '|', 'link'],
-      // },
+      editor: ClassicEditor,
     };
   },
   mixins: [modalControl],
+  watch: {
+    createDate() {
+      this.tempArticle.create_at = Math.floor(new Date(this.createDate) / 1000);
+    },
+    articleId() {
+      if (this.articleId) {
+        const loader = this.$loading.show();
+        this.$http.get(`${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/admin/article/${this.articleId}`).then((res) => {
+          this.tempArticle = res.data.article;
+          this.createDate = this.dateChange(this.tempArticle.create_at);
+          loader.hide();
+        }).catch((err) => {
+          console.dir(err);
+          loader.hide();
+        });
+      } else {
+        const newArticle = {
+          isPublic: false,
+          tags: [],
+        };
+        this.tempArticle = { ...newArticle };
+      }
+    },
+  },
+  methods: {
+    updateArticle() {
+      this.$emit('update-article', this.tempArticle);
+    },
+    dateChange(timestamp) {
+      const dateAndTime = new Date(timestamp * 1000)
+        .toISOString()
+        .split('T');
+      return dateAndTime.shift();
+    },
+  },
 };
 </script>

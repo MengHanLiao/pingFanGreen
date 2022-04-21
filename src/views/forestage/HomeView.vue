@@ -54,7 +54,7 @@
             </div>
           </div>
           <div class="col-lg-6 align-self-end">
-            <div class="background-about"></div>
+            <div data-aos="fade-up" class="background-about"></div>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@
           <div class="row gy-4">
             <div class="col-md-4" v-for="category in categories" :key="category.seriesName">
               <router-link class="overlay" :to="`/products/${category.seriesName}`">
-                <img class="overlay-img object-fit-cover img-h-md"
+                <img data-aos="zoom-in" class="overlay-img object-fit-cover img-h-md"
                   :src="require(`@/assets/images/${category.imgName}.jpg`)" alt="series1">
                 <p class="overlay-content text-white fs-4">{{ category.seriesName }}</p>
               </router-link>
@@ -79,7 +79,7 @@
       <div class="container pt-8 pb-12">
         <div class="row align-items-center">
           <div class="col-4 offset-md-1">
-            <img src="@/assets/images/customRing.jpg" alt="custom"
+            <img data-aos="fade-up-right" src="@/assets/images/customRing.jpg" alt="custom"
               class="object-fit-cover img-h-xl">
           </div>
           <div class="col-8 col-md-4 offset-md-1">
@@ -101,14 +101,14 @@
     <section id="recommand">
       <div class="bg-green-50">
         <div class="container pt-8 pb-12 border-bottom border-2">
-          <h2 class="text-primary text-center mb-5 mb-md-6">好評推薦</h2>
+          <h2 class="text-center mb-5 mb-md-6">好評推薦</h2>
           <ul class="row row-cols-1 row-cols-lg-4 gy-4 list-style-none">
             <li class="col" v-for="(recommand) in customRecommands" :key="recommand.name">
               <div class="card h-100">
                 <div class="row row-cols-2 row-cols-lg-1">
                   <div class="col">
                     <img :src="require(`@/assets/images/${recommand.pictureName}.jpg`)"
-                      alt="randomCustom"
+                      alt="randomCustom" data-aos="zoom-in"
                       class="card-img-top object-fit-cover img-h-sm">
                   </div>
                   <div class="col">
@@ -139,6 +139,7 @@
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import contactModal from '@/components/forestage/ContactModal.vue';
+import '@/methods/aos';
 
 export default {
   data() {

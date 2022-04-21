@@ -169,15 +169,18 @@ export default {
   },
   methods: {
     getProduct() {
+      const loader = this.$loading.show();
       this.$http
         .get(
           `${process.env.VUE_APP_API_BASEURL}/api/${process.env.VUE_APP_PATH}/product/${this.id}`,
         )
         .then((res) => {
           this.product = res.data.product;
+          loader.hide();
         })
         .catch((err) => {
           console.dir(err);
+          loader.hide();
         });
     },
   },

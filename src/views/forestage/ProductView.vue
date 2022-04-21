@@ -16,7 +16,7 @@
               <input
                 type="text"
                 class="form-control border-green-500"
-                placeholder="搜尋商品"
+                placeholder="搜尋商品或類別"
                 aria-label="商品搜尋"
                 aria-describedby="商品搜尋"
                 v-model.trim="keyword"
@@ -30,6 +30,7 @@
             </div>
           </div>
         </div>
+        <template v-if="products.length !== 0">
           <div class="row row-cols-2 row-cols-lg-4 gy-4 mb-7">
             <div class="col" v-for="product in products" :key="product.id">
               <div
@@ -98,10 +99,15 @@
               </div>
             </div>
           </div>
-          <PaginationComponent
-            :pagination="pagination"
-            @change-page="getData"
-          ></PaginationComponent>
+            <PaginationComponent
+              :pagination="pagination"
+              @change-page="getData"
+            ></PaginationComponent>
+        </template>
+        <template v-else>
+          <p class="fs-4 me-5">目前沒有符合的品名或類別<br>
+          請重新輸入關鍵字</p>
+        </template>
       </div>
     </div>
   </div>
@@ -119,7 +125,6 @@ export default {
   data() {
     return {
       isHover: false,
-      isResults: false,
       products: [],
       pagination: [],
       keyword: '',
@@ -161,6 +166,7 @@ export default {
             (item) => item.title.match(this.keyword) || item.category.match(this.keyword),
           );
           loader.hide();
+          this.keyword = '';
         })
         .catch((err) => {
           console.dir(err);
