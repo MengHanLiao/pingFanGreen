@@ -116,8 +116,8 @@
 <script>
 import Breadcrumb from '@/components/forestage/BreadcrumbComponent.vue';
 import ProductSidenav from '@/components/forestage/ProductSidenav.vue';
-import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
-import AddToCart from '@/methods/ProductMixin/AddToCart';
+import ToggleFavorite from '@/mixins/ToggleFavorite';
+import AddToCart from '@/mixins/AddToCart';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import SwalFire from '@/components/SwalFire.vue';
 

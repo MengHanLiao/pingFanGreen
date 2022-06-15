@@ -1,4 +1,4 @@
-import emitter from '../emitter';
+import emitter from '../methods/emitter';
 
 export default {
   data() {

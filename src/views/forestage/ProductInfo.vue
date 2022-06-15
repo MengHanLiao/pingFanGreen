@@ -151,8 +151,8 @@
 
 <script>
 import ProductSidenav from '@/components/forestage/ProductSidenav.vue';
-import ToggleFavorite from '@/methods/ProductMixin/ToggleFavorite';
-import AddToCart from '@/methods/ProductMixin/AddToCart';
+import ToggleFavorite from '@/mixins/ToggleFavorite';
+import AddToCart from '@/mixins/AddToCart';
 import SwalFire from '@/components/SwalFire.vue';
 
 export default {
