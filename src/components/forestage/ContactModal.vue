@@ -19,7 +19,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <v-form ref="form" v-slot="{ errors }" @sumbit="submitMessage">
+          <v-form ref="form" v-slot="{ errors }" @submit="submitMessage">
             <div class="mb-3">
               <label for="customName" class="form-label">
                 姓名<span class="text-sm text-primary ms-2">必填</span>
@@ -110,6 +110,11 @@ export default {
   mixins: [modalControl],
   methods: {
     submitMessage() {
+      this.$http.post('https://script.google.com/macros/s/AKfycbx5g4naRlVkpyAJrGQWTWliuTb9-HYUJuAiv4BaEMv3IxngeAv7pQsUD7oZvQ_cLRknKg/exec', {
+        name: this.customForm.name,
+        email: this.customForm.email,
+        message: this.customForm.message,
+      });
       this.closeModal();
     },
   },
