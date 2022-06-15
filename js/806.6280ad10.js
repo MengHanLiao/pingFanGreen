@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkping_fan_green"]=self["webpackChunkping_fan_green"]||[]).push([[806],{4806:function(n,e,r){r.r(e),r.d(e,{default:function(){return i}});var t=r(3396);const u={class:"home"};function a(n,e){return(0,t.wg)(),(0,t.iD)("div",u," 文章 ")}var c=r(89);const s={},f=(0,c.Z)(s,[["render",a]]);var i=f}}]);
+//# sourceMappingURL=806.6280ad10.js.map

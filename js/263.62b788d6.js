@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkping_fan_green"]=self["webpackChunkping_fan_green"]||[]).push([[263],{8263:function(n,e,r){r.r(e),r.d(e,{default:function(){return s}});var u=r(3396);const t=(0,u._)("p",null,"後臺首頁",-1),a=[t];function c(n,e){return(0,u.wg)(),(0,u.iD)("div",null,a)}var f=r(89);const i={},l=(0,f.Z)(i,[["render",c]]);var s=l}}]);
+//# sourceMappingURL=263.62b788d6.js.map
